@@ -1,0 +1,8 @@
+.headerDesign {
+    background-color: lightseagreen;
+    min-height: 10svh;
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

@@ -1,6 +1,6 @@
-import "CInput.css"
+import "./CInput.css"
 
-export const CInput = (className, type, placeholder, name, disabled, value, onChangeFunction) => {
+export const CInput = ({className, type, placeholder, name, disabled, value, onChangeFunction}) => {
     return (
         <input 
             className={className}

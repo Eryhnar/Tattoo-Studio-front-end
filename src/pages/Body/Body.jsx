@@ -1,14 +1,15 @@
-import { Route, Router } from 'react-router-dom';
-import { Home } from "../Login/Login";
+import { Route, Routes } from 'react-router-dom';
+import { Login } from "../Login/Login";
+import { Home } from "../Home/Home";
 
 export const Body = () => {
     return (
-        <>
-            <Router>
-                <Route path="/" element={<Home />} />
-                <Route path="/register" element={<Register />} />
-                <Route path="/login" element={<Login />} />
-            </Router>
-        </>
+        
+        <Routes>
+            <Route path="/" element={<Home />} />
+            {/* <Route path="/register" element={<Register />} /> */}
+            <Route path="/login" element={<Login />} />
+        </Routes>
+        
     )
 }

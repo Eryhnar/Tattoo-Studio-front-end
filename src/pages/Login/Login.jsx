@@ -1,4 +1,5 @@
 import "./Login.css";
+import { CInput } from "../../common/CInput/CInput";
 
 export const Login = () => {
   return (
