@@ -1,4 +1,4 @@
-.loginButton {
+.loginButton, .registerButton {
     display: flex;
     justify-content: center;
     align-items: center;

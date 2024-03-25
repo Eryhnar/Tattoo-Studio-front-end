@@ -9,6 +9,7 @@ export const Header = () => {
                 <NavButton title="Home" path="/" />
             </div>
             <div className="headerRight">
+                <NavButton title="Register" path="/register" />
                 <NavButton title="Login" path="/login" />
             </div>
         </div>
