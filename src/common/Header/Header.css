@@ -1,7 +1,7 @@
 .headerDesign {
     background-color: lightseagreen;
     min-height: 10svh;
-    flex-grow: 1;
+    flex-grow: 1; /* not needed */
     display: flex;
     justify-content: space-between;
     align-items: center;

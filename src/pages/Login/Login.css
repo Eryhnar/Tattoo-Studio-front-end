@@ -1,8 +1,9 @@
 .loginDesign{
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    min-height: 100svh;
-    flex-grow: 1;
+    min-height: 90svh;
+    flex-grow: 1; /* not needed */
     background-color: purple;
 }
