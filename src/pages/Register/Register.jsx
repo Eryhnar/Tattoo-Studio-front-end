@@ -2,12 +2,14 @@ import { CButton } from "../../common/CButton/CButton";
 import { CInput } from "../../common/CInput/CInput";
 import { Header } from "../../common/Header/Header";
 import { useNavigate } from "react-router-dom";
+import { RegisterService } from "../../services/apiCalls";
+import { useState } from "react";
 import "./Register.css";
 
 export const Register = () => {
     const navigate = useNavigate();
 
-    const {user, setUser} = useState({
+    const [user, setUser] = useState({
         name: "",
         email: "",
         password: ""
@@ -39,21 +41,20 @@ export const Register = () => {
 
     const registerUser = async () => {
         try {
-            for (let elemento in user) {
-                if (user[elemento] === "") {
-                    throw new Error("Todos los campos tienen que estar rellenos");
+            for (let prop in user) {
+                if (user[prop] === "") {
+                    throw new Error("All fields are required");
                 }
             }
 
             const response = await RegisterService(user);
 
-            console.log(response);
             setMsgError(response.message);
 
             setTimeout(() => {
                 navigate("/");
             }, 1200);
-            
+
         } catch (error) {
             setMsgError(error.message);
         }
@@ -69,8 +70,8 @@ export const Register = () => {
                     placeholder="John"
                     name="name"
                     disabled=""
-                    value=""
-                    onChangeFunction={() => { }}
+                    value={user.name || ""}
+                    onChangeFunction={(e) => inputHandler(e)}
                 />
                 <CInput
                     className="inputDesign"
@@ -78,8 +79,8 @@ export const Register = () => {
                     placeholder="email@yourdomain.com"
                     name="email"
                     disabled=""
-                    value=""
-                    onChangeFunction={() => { }}
+                    value={user.email || ""}
+                    onChangeFunction={(e) => inputHandler(e)}
                 />
                 <CInput
                     className="inputDesign"
@@ -87,13 +88,13 @@ export const Register = () => {
                     placeholder="password"
                     name="password"
                     disabled=""
-                    value=""
-                    onChangeFunction={() => { }}
+                    value={user.password || ""}
+                    onChangeFunction={(e) => inputHandler(e)}
                 />
                 <CButton 
                     className="registerButton"
                     title="Register"
-                    onClickFunction={() => { }}
+                    onClickFunction={registerUser}
                 />
             </div>
         </>
