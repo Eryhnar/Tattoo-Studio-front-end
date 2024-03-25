@@ -1,0 +1,14 @@
+.headerDesign {
+    background-color: lightseagreen;
+    min-height: 10svh;
+    flex-grow: 1; /* not needed */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.headerRight {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
