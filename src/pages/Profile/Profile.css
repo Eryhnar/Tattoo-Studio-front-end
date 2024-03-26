@@ -1,8 +1,107 @@
-.profileDesign {
+.profile-design {
     display: flex;
-    flex-direction: column;
+    /* flex-direction: column; */
     justify-content: center;
     align-items: center;
     min-height: 90svh;
     background-color: turquoise;
+}
+
+.profile-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+
+    min-height: 40em;
+    max-width: 40em;
+    flex-grow: 1;
+
+    background-color: white;
+}
+
+.profile-card h1 {
+    margin-block: 1.5em;
+}
+
+.name-field {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.name-field p {
+    position: absolute;
+    right: calc(50% + 6em); /* Adjust this value as needed */
+    /* transform: translateX(calc(-50% - 4.5em)); */
+    text-align: right;
+}
+
+.surname-field {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.surname-field p {
+    position: absolute;
+    right: calc(50% + 6em); /* Adjust this value as needed */
+    /* transform: translateX(calc(-50% - 4.5em)); */
+    text-align: right;
+}
+
+.email-field {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.email-field p {
+    position: absolute;
+    right: calc(50% + 6em); 
+    /* transform: translateX(calc(-50% - 4.5em)); */
+    text-align: right;
+}
+
+.edit-icon {
+    position: absolute;
+    left: calc(50% + 6em); 
+    width: 1em;
+    height: 1em;
+    background-color: black;
+}
+
+.profile-inputs {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.profile-input {
+    margin-block: 1em;
+}
+
+/* .profile-input:disabled {
+    background-color: transparent;
+    border: none;
+} */
+
+.change-password-button {
+    margin-block: 1em;
+}
+
+.edit-profile-button {
+    margin-block: 1em;
+}
+
+.edit-profile-button .hover {
+    background-color: lightblue;
+    cursor: pointer;
 }
