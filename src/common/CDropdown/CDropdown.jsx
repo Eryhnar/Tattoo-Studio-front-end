@@ -35,8 +35,7 @@ export const CDropdown = ({ title, items }) => {
             {isOpen && (
                 <div className="dropdown-content">
                     {items.map((item, index) => (
-                        // <a key={index} href="#">{item}</a>
-                        <div key={index}>{item}</div> 
+                        <div className="dropdown-item" key={index}>{item}</div> 
                     ))}
                 </div>
             )}
