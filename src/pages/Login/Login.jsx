@@ -55,7 +55,6 @@ export const Login = () => {
   };
   return (
     <>
-      <Header />
       <div className="loginDesign">
         <CInput
           className="inputDesign"

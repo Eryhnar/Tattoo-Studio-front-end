@@ -62,7 +62,6 @@ export const Register = () => {
     
     return (
         <>
-            <Header />
             <div className="registerDesign">
                 <CInput
                     className="inputDesign"
