@@ -51,9 +51,9 @@ export const Register = () => {
 
             setMsgError(response.message);
 
-            setTimeout(() => {
-                navigate("/");
-            }, 1200);
+            // setTimeout(() => {
+            //     navigate("/");
+            // }, 1200);
 
         } catch (error) {
             setMsgError(error.message);
@@ -96,6 +96,7 @@ export const Register = () => {
                     title="Register"
                     onClickFunction={registerUser}
                 />
+                <div className="error">{msgError}</div>
             </div>
         </>
     )

@@ -11,3 +11,15 @@ export const RegisterService = async (user) => {
 
     return response.json();
 }
+
+export const LoginService = async (user) => {
+    const response = await fetch(root + "login", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(user),
+    });
+
+    return response.json();
+}
