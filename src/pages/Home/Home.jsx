@@ -5,7 +5,6 @@ export const Home = () => {
     return (
         // <div className="viewDesign">
         <>
-            <Header />
             <div className="homeDesign">
                 This is Home
             </div>

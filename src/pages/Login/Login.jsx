@@ -44,6 +44,7 @@ export const Login = () => {
 
       setMsgError(response.message);
       setToken(response.token);
+      localStorage.setItem("token", response.token);
 
       // setTimeout(() => {
       //     navigate("/");
