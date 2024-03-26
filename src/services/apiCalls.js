@@ -23,3 +23,13 @@ export const LoginService = async (user) => {
 
     return response.json();
 }
+
+export const GetProfileService = async (token) => {
+    const response = await fetch(root + "profile", {
+        method: "GET",
+        headers: {
+            Authorization: `Bearer ${token}`,
+        },
+    });
+    return response.json();
+}
