@@ -33,3 +33,16 @@ export const GetProfileService = async (token) => {
     });
     return response.json();
 }
+
+export const UpdateProfileService = async (user, token) => {
+    const response = await fetch(root + "profile", {
+        method: "PUT",
+        headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify(user),
+    });
+
+    return response.json();
+}
