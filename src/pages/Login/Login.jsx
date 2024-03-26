@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { LoginService } from "../../services/apiCalls";
 import { TokenContext } from "../../App";
+import { decodeToken } from "react-jwt"
 
 export const Login = () => {
   const navigate = useNavigate();
@@ -21,7 +22,7 @@ export const Login = () => {
     passwordError: "",
   });
 
-  const { setToken } = React.useContext(TokenContext);
+  const { token, setToken } = React.useContext(TokenContext);
 
   const [msgError, setMsgError] = useState("");
 
@@ -43,8 +44,13 @@ export const Login = () => {
       const response = await LoginService(user);
 
       setMsgError(response.message);
-      setToken(response.token);
-      localStorage.setItem("token", response.token);
+      console.log("token" ,response.token); // remove
+      const decoded = decodeToken(response.token);
+      const token = response.token //remove
+      localStorage.setItem("token", JSON.stringify(response.token));
+      console.log("hi", localStorage.getItem("token")); // remove
+      setToken(decoded);
+      console.log("decoded", decoded); // remove
 
       // setTimeout(() => {
       //     navigate("/");

@@ -25,7 +25,8 @@ export const LoginService = async (user) => {
 }
 
 export const GetProfileService = async (token) => {
-    const response = await fetch(root + "profile", {
+    console.log(token);
+    const response = await fetch(root + "users/profile", {
         method: "GET",
         headers: {
             Authorization: `Bearer ${token}`,
@@ -35,7 +36,7 @@ export const GetProfileService = async (token) => {
 }
 
 export const UpdateProfileService = async (user, token) => {
-    const response = await fetch(root + "profile", {
+    const response = await fetch(root + "users/profile", {
         method: "PUT",
         headers: {
             "Content-Type": "application/json",
