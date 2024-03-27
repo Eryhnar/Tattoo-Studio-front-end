@@ -46,3 +46,10 @@ export const UpdateProfileService = async (user, token) => {
 
     return response.json();
 }
+
+export const GetServicesService = async () => {
+    const response = await fetch(root + "services", {
+        method: "GET",
+    });
+    return response.json();
+}
