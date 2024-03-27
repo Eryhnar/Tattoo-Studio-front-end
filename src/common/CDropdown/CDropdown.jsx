@@ -24,21 +24,31 @@ import { useState } from "react";
 //       );
 // }
 
-export const CDropdown = ({ title, items }) => {
-    const [isOpen, setIsOpen] = useState(false);
+// export const CDropdown = ({ buttonClass, dropdownClass, title, items }) => {
+//     const [isOpen, setIsOpen] = useState(false);
 
-    const toggleOpen = () => setIsOpen(!isOpen);
+//     const toggleOpen = () => setIsOpen(!isOpen);
 
+//     return (
+//         <div className={buttonClass}>
+//             <button className="dropbtn" onClick={toggleOpen}>{title}</button>
+//             {isOpen && (
+//                 <div className={dropdownClass}>
+//                     {items.map((item, index) => (
+//                         <div className="dropdown-item" key={index}>{item}</div> 
+//                     ))}
+//                 </div>
+//             )}
+//         </div>
+//     );
+// }
+
+export const CDropdown = ({ buttonClass, dropdownClass, title, items }) => {
     return (
-        <div className="dropdown">
-            <button className="dropbtn" onClick={toggleOpen}>{title}</button>
-            {isOpen && (
-                <div className="dropdown-content">
-                    {items.map((item, index) => (
-                        <div className="dropdown-item" key={index}>{item}</div> 
-                    ))}
-                </div>
-            )}
-        </div>
+        <select className={buttonClass}>
+            {items.map((item, index) => (
+                <option key={index} value={item} className={dropdownClass}>{item}</option>
+            ))}
+        </select>
     );
 }

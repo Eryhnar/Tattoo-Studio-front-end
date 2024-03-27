@@ -7,6 +7,8 @@ export const Home = () => {
         <>
             <div className="homeDesign">
                 <CDropdown 
+                    buttonClass="dropdown"
+                    dropdownClass="dropdown-content"
                     title="Dropdown" 
                     items={["patata", "cebolla", "tomate", "lechuga", "zanahoria"]}
                 />

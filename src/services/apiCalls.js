@@ -53,3 +53,13 @@ export const GetServicesService = async () => {
     });
     return response.json();
 }
+
+export const GetAppointmentsService = async (token) => {
+    const response = await fetch(root + "appointments/user", {
+        method: "GET",
+        headers: {
+            Authorization: `Bearer ${token}`,
+        },
+    });
+    return response.json();
+}

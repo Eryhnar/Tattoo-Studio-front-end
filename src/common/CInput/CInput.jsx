@@ -9,6 +9,7 @@ export const CInput = ({className, type, placeholder, name, disabled, value, onC
             name={name}
             disabled={disabled}
             value={value}
-            onChange={onChangeFunction} />
+            onChange={onChangeFunction} 
+        />
     )
 }
