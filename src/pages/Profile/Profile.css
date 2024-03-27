@@ -71,10 +71,34 @@
 
 .edit-icon {
     position: absolute;
-    left: calc(50% + 6em); 
+    /* left: calc(50% + 6em);  */
     width: 1em;
     height: 1em;
     background-color: black;
+}
+
+.edit-fields {
+    position: absolute;
+    left: calc(50% + 6em); 
+    width: 1em;
+    height: 1em;
+}
+
+.save-icon {
+    position: absolute;
+    /* left: calc(50% + 6em);  */
+    width: 1em;
+    height: 1em;
+    background-color: green;
+}
+
+.cancel-icon {
+    position: absolute;
+    /* left: calc(50% + 8em);  */
+    left: 2em;
+    width: 1em;
+    height: 1em;
+    background-color: red;
 }
 
 .profile-inputs {

@@ -17,7 +17,10 @@ function App() {
   //     : null; //TODO check
   // }, [token]);
   useEffect(() => { //TODO check
-    token === null && localStorage.removeItem('token');
+    // token === null && localStorage.removeItem('token');
+    token === null && localStorage.getItem('token') 
+      ? setToken(decodeToken(localStorage.getItem('token')))
+      : null;
   }, [token]);
 
   return (

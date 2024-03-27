@@ -11,6 +11,7 @@ export const Header = () => {
 
     const logOut = () => {
         setToken(null);
+        localStorage.removeItem("token");
         navigate("/");
     };
 
@@ -22,7 +23,7 @@ export const Header = () => {
             <div className="headerRight">
                 {token ? (
                     <>
-                        <NavButton title="Profile" path="/profile" />
+                        <NavButton title={token.name} path="/profile" />
                         <div onClick={logOut}>
                             <NavButton title="Logout" path="/" />
                         </div>

@@ -10,7 +10,17 @@ import { CButton } from "../../common/CButton/CButton";
 export const Profile = () => {
     const {token, setToken} = React.useContext(TokenContext);
     const [hasUser, setHasUser] = useState(false);
+    const [write, setWrite] = useState({
+        name: "disabled",
+        surname: "disabled",
+        email: "disabled",
+    });
     const [profile, setProfile] = useState({
+        name: "",
+        surname: "",
+        email: "",
+    });
+    const [originalProfile, setOriginalProfile] = useState({
         name: "",
         surname: "",
         email: "",
@@ -30,6 +40,7 @@ export const Profile = () => {
             try {
                 const response = await GetProfileService(JSON.parse(localStorage.getItem("token")));
                 setProfile(response.data);
+                setOriginalProfile(response.data);
             } catch (error) {
                 console.log(error);
             }
@@ -41,11 +52,30 @@ export const Profile = () => {
     }, []);
     // console.log(profile);
 
+    const inputHandler = (e) => {
+        setProfile((prevState) => ({
+          ...prevState,
+          [e.target.name]: e.target.value,
+        }));
+    };
+
+    const writeField = (e) => {
+        setWrite(prevState => ({
+            ...prevState,
+            [e]: prevState[e] === "disabled" ? "" : "disabled",
+        }));
+    }
+
+    const resetProfile = () => {
+        setProfile(originalProfile);
+    }
+
+
     return (
         <div className="profile-design">
             <CCard 
                 className={"profile-card"}
-                title={profile.name} 
+                title={token.name} 
                 content={
                     <div className="profile-inputs">
                         <div className="name-field">
@@ -54,11 +84,35 @@ export const Profile = () => {
                                 className={"profile-input"}
                                 type="name"
                                 name="name"
-                                disabled="disabled"
+                                disabled={write.name}
                                 value={profile.name || ""}
-                                onChangeFunction={() => {}}
+                                onChangeFunction={(e) => { inputHandler(e) }}
                             />
-                            <div className="edit-icon"></div>
+                            {/* <div className="edit-icon"></div> */}
+                            {write.name === "disabled" 
+                                ? <div className="edit-fields">
+                                    <CButton 
+                                    className={"edit-icon"}
+                                    title={""}
+                                    onClickFunction={() => writeField("name")}
+                                    /> 
+                                </div>
+                                : <div className="edit-fields">
+                                    <CButton
+                                        className={"save-icon"}
+                                        title={""}
+                                        onClickFunction={() => {}}
+                                    />
+                                    <CButton
+                                        className={"cancel-icon"}
+                                        title={""}
+                                        onClickFunction={() => {
+                                            writeField("name");
+                                            resetProfile();
+                                        }}
+                                    />
+                                </div>
+                            }
                         </div>
                         <div className="surname-field">
                             <p>Surname</p>
@@ -66,10 +120,39 @@ export const Profile = () => {
                                 className={"profile-input"}
                                 type="surname"
                                 name="surname"
-                                disabled="disabled"
+                                disabled={write.surname}
                                 value={profile.surname || ""}
-                                onChangeFunction={() => {}}
+                                onChangeFunction={(e) => { inputHandler(e) }}
                             />
+                            {write.surname === "disabled" 
+                                ? <div className="edit-fields">
+                                    <CButton 
+                                    className={"edit-icon"}
+                                    title={""}
+                                    onClickFunction={() => writeField("surname")}
+                                    /> 
+                                </div>
+                                : <div className="edit-fields">
+                                    <CButton
+                                        className={"save-icon"}
+                                        title={""}
+                                        onClickFunction={() => {}}
+                                    />
+                                    <CButton
+                                        className={"cancel-icon"}
+                                        title={""}
+                                        onClickFunction={() => {
+                                            writeField("surname");
+                                            resetProfile();
+                                        }}
+                                    />
+                                </div>
+                            }
+                            {/* <CButton 
+                                className={"edit-icon"}
+                                title={""}
+                                onClickFunction={() => writeField("surname")}
+                            /> */}
                         </div>
                         <div className="email-field">
                             <p>Email</p>
@@ -77,21 +160,26 @@ export const Profile = () => {
                                 className={"profile-input"}
                                 type="email"
                                 name="email"
-                                disabled="disabled"
+                                disabled={write.email}
                                 value={profile.email || ""}
-                                onChangeFunction={() => {}}
+                                onChangeFunction={(e) => { inputHandler(e) }}
                             />
+                            {/* <CButton 
+                                className={"edit-icon"}
+                                title={""}
+                                onClickFunction={() => writeField("email")}
+                            /> */}
                         </div>
                         <CButton
                             className={"change-password-button"}
                             title={"change password"}
                             onClickFunction={() => {}}
                         />
-                        <CButton
+                        {/* <CButton
                             className={"edit-profile-button"}
                             title={"edit profile"}
                             onClickFunction={() => {}}
-                        />
+                        /> */}
                     </div>
                 }
             />

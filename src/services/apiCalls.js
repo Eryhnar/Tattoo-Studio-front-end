@@ -25,7 +25,6 @@ export const LoginService = async (user) => {
 }
 
 export const GetProfileService = async (token) => {
-    console.log(token);
     const response = await fetch(root + "users/profile", {
         method: "GET",
         headers: {
