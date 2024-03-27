@@ -19,6 +19,7 @@ export const Header = () => {
         <div className="headerDesign">
             <div className="headerLeft">
                 <NavButton title="Home" path="/" />
+                <NavButton title="Services" path="/services" />
             </div>
             <div className="headerRight">
                 {token ? (
