@@ -50,17 +50,19 @@ export const Appointments = () => {
                                 buttonClass="artist-selector"
                                 dropdownClass="artist-dropdown"
                                 title="artist"
+                                // name="artist"
                                 // placeholder="artist"
                                 items={["Artist 1", "Artist 2", "Artist 3"]}
-                                // onChangeFunction={(e) => {inputHandler(e)}}
+                                onChangeFunction={(e) => {inputHandler(e)}}
                             />
                             <CDropdown
                                 buttonClass="service-selector"
                                 dropdownClass="service-dropdown"
                                 title="service"
+                                // name="service"
                                 // placeholder="service"
                                 items={["Service 1", "Service 2", "Service 3"]}
-                                // onChangeFunction={(e) => {inputHandler(e)}}
+                                onChangeFunction={(e) => {inputHandler(e)}}
                             />
 
                             <CInput

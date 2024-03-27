@@ -63,3 +63,16 @@ export const GetAppointmentsService = async (token) => {
     });
     return response.json();
 }
+
+export const CreateAppointmentService = async (appointment, token) => {
+    const response = await fetch(root + "appointments", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify(appointment),
+    });
+
+    return response.json();
+}

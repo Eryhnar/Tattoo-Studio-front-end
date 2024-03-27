@@ -43,9 +43,10 @@ import { useState } from "react";
 //     );
 // }
 
-export const CDropdown = ({ buttonClass, dropdownClass, title, items }) => {
+export const CDropdown = ({ buttonClass, dropdownClass, title, items, onChangeFunction }) => {
     return (
-        <select className={buttonClass}>
+        <select className={buttonClass} onChange={onChangeFunction} name={title}>
+            <option value="" disabled selected> {title} </option>
             {items.map((item, index) => (
                 <option key={index} value={item} className={dropdownClass}>{item}</option>
             ))}
