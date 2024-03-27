@@ -24,6 +24,7 @@ export const Header = () => {
             <div className="headerRight">
                 {token ? (
                     <>
+                        <NavButton title="Appointments" path="/appointments" />
                         <NavButton title={token.name} path="/profile" />
                         <div onClick={logOut}>
                             <NavButton title="Logout" path="/" />
