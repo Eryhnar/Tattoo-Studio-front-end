@@ -117,6 +117,7 @@ export const Profile = () => {
                                                 writeField("name");
                                                 setProfile(newProfile);
                                                 setOriginalProfile(profile);
+                                                setToken(newProfile);
                                             }
                                         }}
                                     />
@@ -153,7 +154,15 @@ export const Profile = () => {
                                     <CButton
                                         className={"save-icon"}
                                         title={""}
-                                        onClickFunction={() => {}}
+                                        onClickFunction={async () => {
+                                            const newProfile = await updateProfile(profile);
+                                            if (newProfile) {
+                                                writeField("surname");
+                                                setProfile(newProfile);
+                                                setOriginalProfile(profile);
+                                                setToken(newProfile);
+                                            }
+                                        }}
                                     />
                                     <CButton
                                         className={"cancel-icon"}
