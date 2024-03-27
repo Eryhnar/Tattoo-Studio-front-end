@@ -1,6 +1,6 @@
 import React from "react";
 import { useEffect, useState } from "react";
-import { GetProfileService } from "../../services/apiCalls";
+import { GetProfileService, UpdateProfileService } from "../../services/apiCalls";
 import "./Profile.css";
 import { TokenContext } from "../../App";
 import { CCard } from "../../common/CCard/CCard";
@@ -70,6 +70,16 @@ export const Profile = () => {
         setProfile(originalProfile);
     }
 
+    const updateProfile = async (field) => {
+        try {
+            const response = await UpdateProfileService(field, JSON.parse(localStorage.getItem("token")));
+            console.log(response);
+            return response.data;
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
 
     return (
         <div className="profile-design">
@@ -101,7 +111,14 @@ export const Profile = () => {
                                     <CButton
                                         className={"save-icon"}
                                         title={""}
-                                        onClickFunction={() => {}}
+                                        onClickFunction={async () => {
+                                            const newProfile = await updateProfile(profile);
+                                            if (newProfile) {
+                                                writeField("name");
+                                                setProfile(newProfile);
+                                                setOriginalProfile(profile);
+                                            }
+                                        }}
                                     />
                                     <CButton
                                         className={"cancel-icon"}

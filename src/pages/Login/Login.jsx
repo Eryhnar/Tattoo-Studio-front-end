@@ -44,13 +44,10 @@ export const Login = () => {
       const response = await LoginService(user);
 
       setMsgError(response.message);
-      console.log("token" ,response.token); // remove
       const decoded = decodeToken(response.token);
       const token = response.token //remove
       localStorage.setItem("token", JSON.stringify(response.token));
-      console.log("hi", localStorage.getItem("token")); // remove
       setToken(decoded);
-      console.log("decoded", decoded); // remove
 
       // setTimeout(() => {
       //     navigate("/");
