@@ -20,11 +20,12 @@ export const Profile = () => {
         surname: "",
         email: "",
     });
-    const [originalProfile, setOriginalProfile] = useState({
+    const [originalProfile, setOriginalProfile] = useState({ 
         name: "",
         surname: "",
         email: "",
     });
+    const [msgError, setMsgError] = useState("");
 
     // const fetchProfile = async () => {
     //     try {

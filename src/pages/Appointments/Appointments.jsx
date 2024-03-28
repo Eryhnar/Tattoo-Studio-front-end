@@ -1,42 +1,72 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import "./Appointments.css";
-import { GetAppointmentsService } from "../../services/apiCalls";
+import { CreateAppointmentService, GetAppointmentsService } from "../../services/apiCalls";
 import { CCard } from "../../common/CCard/CCard";
 import { CInput } from "../../common/CInput/CInput";
 import { CDropdown } from "../../common/CDropdown/CDropdown";
+import { CButton } from "../../common/CButton/CButton";
+import { TokenContext } from "../../App";
 
 export const Appointments = () => {
-    const [appointments, setAppointments] = useState([]);
-    const [openNew, setOpenNew] = useState(true);
-    const [newAppointment, setNewAppointment] = useState({
-        customer: "",
-        artist: "",
-        service: "",
+    const { token, setToken } = useContext(TokenContext);
+    const [ appointments, setAppointments ] = useState([]);
+    const [ openNew, setOpenNew ] = useState(true);
+    const [ newAppointment, setNewAppointment ] = useState({
+        customerId: "",
+        artistId: "",
+        serviceId: "",
         date: "",
         // time: "",
     });
+    const [ msgError, setMsgError ] = useState("");
 
     useEffect(() => {
         const getAppointments = async () => {
             const token = localStorage.getItem("token");
-            console.log(token);
+            // console.log(token);
             const response = await GetAppointmentsService(JSON.parse(localStorage.getItem("token")));
             setAppointments(response.data);
-            console.log(response.data);
+            console.log("response data",response.data);
         };
         getAppointments();
+        if (token.roleName === "customer") {
+            setNewAppointment(prevState => ({
+                ...prevState,
+                customerId: token.userId
+            }));
+        }
     }, []);
 
-    useEffect(() => {
-        console.log(newAppointment);
+    useEffect(() => { //TODO remove
+        console.log("newAppointment", newAppointment);
+        // console.log("token", token)
     }, [newAppointment]);
 
     const inputHandler = (e) => {
+        let value = e.target.value;
+        if (e.target.name === "date") {
+            value = value.replace("T", " ");
+        }
         setNewAppointment((prevState) => ({
             ...prevState,
-            [e.target.name]: e.target.value,
+            [e.target.name]: value,
         }));
     };
+
+
+
+    const createAppointment = async () => {
+        try {
+            const response = await CreateAppointmentService(newAppointment, JSON.parse(localStorage.getItem("token")));
+            console.log(response.data);
+            if (response.success === false) {
+                throw new Error(response.message);
+            }
+            return response.data;
+        } catch (error) {
+            setMsgError(error.message);
+        }
+    }
 
     return (
         <div className="appointmentsDesign">
@@ -45,23 +75,33 @@ export const Appointments = () => {
                     className= {"new-appointment"}
                     title= {""}
                     content= {
-                        <>
+                        <div className="new-appointment-content">
                             <CDropdown
                                 buttonClass="artist-selector"
                                 dropdownClass="artist-dropdown"
-                                title="artist"
+                                title="artistId"
                                 // name="artist"
                                 // placeholder="artist"
-                                items={["Artist 1", "Artist 2", "Artist 3"]}
+                                // items={["Artist 1", "Artist 2", "Artist 3"]}
+                                items={[
+                                    { id: 1, name: "Artist 1" },
+                                    { id: 2, name: "Artist 2" },
+                                    { id: 3, name: "Artist 3" }
+                                ]}
                                 onChangeFunction={(e) => {inputHandler(e)}}
                             />
                             <CDropdown
                                 buttonClass="service-selector"
                                 dropdownClass="service-dropdown"
-                                title="service"
+                                title="serviceId"
                                 // name="service"
                                 // placeholder="service"
-                                items={["Service 1", "Service 2", "Service 3"]}
+                                // items={["Service 1", "Service 2", "Service 3"]}
+                                items={[
+                                    { id: 1, name: "Service 1" },
+                                    { id: 2, name: "Service 2" },
+                                    { id: 3, name: "Service 3" }
+                                ]}
                                 onChangeFunction={(e) => {inputHandler(e)}}
                             />
 
@@ -74,6 +114,28 @@ export const Appointments = () => {
                                 value={newAppointment.date || ""} 
                                 onChangeFunction={(e) => {inputHandler(e)}}
                             />
+                            <div className="create-appointment-buttons">
+                                <CButton
+                                    className="new-appointment-save"
+                                    title="Save"
+                                    onClickFunction={createAppointment}
+                                />
+                                <CButton
+                                    className="new-appointment-cancel"
+                                    title="Cancel"
+                                    onClickFunction={() => {
+                                        setOpenNew(false);
+                                        setNewAppointment({
+                                            customerId: "",
+                                            artistId: "",
+                                            serviceId: "",
+                                            date: "",
+                                        });
+                                    }}
+                                />
+                            </div>
+                            <p>{msgError}</p>
+                            <p>hi</p>
                             {/* <CInput
                                 className={"date-time"}
                                 type="date"
@@ -90,13 +152,42 @@ export const Appointments = () => {
                                 value= {newAppointment.time || ""}
                                 onChange={() => {}}
                             /> */}
-                        </>
+                        </div>
                     }
                     image= {""}
                 />
-                : null
+                : <CButton 
+                    className="new-appointment-button"
+                    title="+"
+                    onClickFunction={() => setOpenNew(true)}
+                />
             }
             <h1>Appointments</h1>
+            <div className="appointments">
+                {appointments.map((appointment, index) => (
+                    <CCard 
+                        key={appointment.id}
+                        className= {"appointment"}
+                        title= {""}
+                        content= {
+                            <div className="appointment-content">
+                                <p>Artist: {appointment.artist.name}</p>
+                                <p>Service: {appointment.service.name}</p>
+                                {appointment.catalogue && 
+                                    <div className="appointment-content-catalogue">
+                                        <p>Catalogue: {appointment.catalogue.name}</p>
+                                        <p>Price: {appointment.catalogue.price}</p>
+                                        <img src={appointment.catalogue.image} alt="catalogue" />
+                                    </div>
+                                }
+                                <p>Date: {appointment.date}</p>
+                                <p>Status: {appointment.status}</p>
+                            </div>
+                        }
+                        image= {""}
+                    />
+                ))}
+            </div>
         </div>
     )
 }
