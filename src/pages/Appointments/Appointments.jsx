@@ -10,7 +10,7 @@ import { TokenContext } from "../../App";
 export const Appointments = () => {
     const { token, setToken } = useContext(TokenContext);
     const [ appointments, setAppointments ] = useState([]);
-    const [ openNew, setOpenNew ] = useState(true);
+    const [ openNew, setOpenNew ] = useState(false);
     const [ newAppointment, setNewAppointment ] = useState({
         customerId: "",
         artistId: "",
@@ -19,12 +19,13 @@ export const Appointments = () => {
         // time: "",
     });
     const [ msgError, setMsgError ] = useState("");
+    const [ status, setStatus ] = useState("pending");
 
     useEffect(() => {
         const getAppointments = async () => {
             const token = localStorage.getItem("token");
             // console.log(token);
-            const response = await GetAppointmentsService(JSON.parse(localStorage.getItem("token")));
+            const response = await GetAppointmentsService(status, JSON.parse(localStorage.getItem("token")));
             setAppointments(response.data);
             console.log("response data",response.data);
         };
@@ -70,6 +71,23 @@ export const Appointments = () => {
 
     return (
         <div className="appointmentsDesign">
+            <div className="appointment-status-selectors">
+                <CButton
+                    className={`appointment-status-selector ${status === 'pending' ? 'active' : ''}`}
+                    title="Pending"
+                    onClickFunction={() => setStatus("pending")}
+                />
+                <CButton
+                    className={`appointment-status-selector ${status === 'done' ? 'active' : ''}`}
+                    title="Done"
+                    onClickFunction={() => setStatus("done")}
+                />
+                <CButton
+                    className={`appointment-status-selector ${status === 'cancelled' ? 'active' : ''}`}
+                    title="Cancelled"
+                    onClickFunction={() => setStatus("cancelled")}
+                />
+            </div>
             { (openNew) 
                 ?<CCard 
                     className= {"new-appointment"}
@@ -135,7 +153,6 @@ export const Appointments = () => {
                                 />
                             </div>
                             <p>{msgError}</p>
-                            <p>hi</p>
                             {/* <CInput
                                 className={"date-time"}
                                 type="date"
@@ -162,7 +179,7 @@ export const Appointments = () => {
                     onClickFunction={() => setOpenNew(true)}
                 />
             }
-            <h1>Appointments</h1>
+            {/* <h1>Appointments</h1> */}
             <div className="appointments">
                 {appointments.map((appointment, index) => (
                     <CCard 
@@ -177,10 +194,12 @@ export const Appointments = () => {
                                     <div className="appointment-content-catalogue">
                                         <p>Catalogue: {appointment.catalogue.name}</p>
                                         <p>Price: {appointment.catalogue.price}</p>
-                                        <img src={appointment.catalogue.image} alt="catalogue" />
+                                        <div className="appointment-img">
+                                            <img src={appointment.catalogue.afterImage} alt="catalogue" />
+                                        </div>
                                     </div>
                                 }
-                                <p>Date: {appointment.date}</p>
+                                <p>Date: {appointment.date.replace("T", " ")}</p>
                                 <p>Status: {appointment.status}</p>
                             </div>
                         }

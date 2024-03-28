@@ -54,8 +54,9 @@ export const GetServicesService = async () => {
     return response.json();
 }
 
-export const GetAppointmentsService = async (token) => {
-    const response = await fetch(root + "appointments/user", {
+export const GetAppointmentsService = async (state, token) => {
+    // const response = await fetch(root + "appointments/user" + , {
+    const response = await fetch(`${root}appointments/user?status=${state}`, {
         method: "GET",
         headers: {
             Authorization: `Bearer ${token}`,

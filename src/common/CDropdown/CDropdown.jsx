@@ -1,5 +1,4 @@
 import "./CDropdown.css";
-import { useState } from "react";
 
 // export const CDropdown = ({ title, items }) => {
 //     // return (

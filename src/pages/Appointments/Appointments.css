@@ -8,6 +8,38 @@
     min-height: 90svh;
 
     background-color: turquoise;
+    /* background-color: yellow; */
+}
+
+.appointment-status-selectors {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+
+    position: sticky;
+    top: 0;
+
+    /* background-color: turquoise; */
+}
+
+.appointment-status-selector {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+
+    background-color: white;
+    border-radius: 0.5em;
+    padding-inline: 0.5em;
+    margin-inline: 0.5em;
+    margin-block: 1em;
+
+    cursor: pointer;
+}
+
+.active {
+    background-color: lightgray;
 }
 
 .new-appointment {
@@ -40,4 +72,37 @@
 .artist-selector, .service-selector, .date-time, .new-appointment-save, .new-appointment-cancel {
     width: 10em;
     margin: 1em;
+}
+
+/* .appointments {
+    overflow: scroll;
+} */
+
+.appointment {
+    background-color: lightgray;
+    max-width: 40em;
+}
+
+.appointment-content-catalogue {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    max-width: 40em;
+}
+
+/* .appointment-content-catalogue img {
+    display: block;
+    width: 100%;
+    height: auto;
+} */
+
+.appointment-img {
+    max-width: 20em;
+}
+
+.appointment-img img {
+    display: block;
+    width: 100%;
+    height: auto;
 }
