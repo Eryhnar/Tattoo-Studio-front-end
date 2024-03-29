@@ -20,6 +20,8 @@ export const Appointments = () => {
         date: "",
         // time: "",
     });
+    const [ date, setDate ] = useState("");
+
     const [ msgError, setMsgError ] = useState("");
     const [ status, setStatus ] = useState("pending");
 
@@ -67,7 +69,9 @@ export const Appointments = () => {
 
     const inputHandler = (e) => {
         let value = e.target.value;
+        /* TODO reimplement this */
         if (e.target.name === "date") {
+            setDate(value);
             // value = value.replace("T", " ");
             value += ":00.000Z";
             console.log("value", value);
@@ -87,6 +91,7 @@ export const Appointments = () => {
             if (response.success === false) {
                 throw new Error(response.message);
             }
+            setOpenNew(false);
             return response.data;
         } catch (error) {
             setMsgError(error.message);
@@ -95,180 +100,176 @@ export const Appointments = () => {
 
     return (
         <div className="appointmentsDesign">
-            <div className="appointment-status-selectors">
-                <CButton
-                    className={`appointment-status-selector ${status === 'pending' ? 'active' : ''}`}
-                    title="Pending"
-                    onClickFunction={() => setStatus("pending")}
-                />
-                <CButton
-                    className={`appointment-status-selector ${status === 'done' ? 'active' : ''}`}
-                    title="Done"
-                    onClickFunction={() => setStatus("done")}
-                />
-                <CButton
-                    className={`appointment-status-selector ${status === 'cancelled' ? 'active' : ''}`}
-                    title="Cancelled"
-                    onClickFunction={() => setStatus("cancelled")}
-                />
-            </div>
-            { (openNew) 
-                ?<CCard 
-                    className= {"new-appointment"}
-                    title= {""}
-                    content= {
-                        <div className="new-appointment-content">
-                            <CDropdown
-                                buttonClass="artist-selector"
-                                dropdownClass="artist-dropdown"
-                                title="artistId"
-                                // name="artist"
-                                // placeholder="artist"
-                                // items={["Artist 1", "Artist 2", "Artist 3"]}
-                                // items={[
-                                //     { id: 1, name: "Artist 1" },
-                                //     { id: 2, name: "Artist 2" },
-                                //     { id: 3, name: "Artist 3" }
-                                // ]}
-                                items={artists}
-                                onChangeFunction={(e) => {inputHandler(e)}}
-                            />
-                            <CDropdown
-                                buttonClass="service-selector"
-                                dropdownClass="service-dropdown"
-                                title="serviceId"
-                                // name="service"
-                                // placeholder="service"
-                                // items={["Service 1", "Service 2", "Service 3"]}
-                                // items={[
-                                //     { id: 1, name: "Service 1" },
-                                //     { id: 2, name: "Service 2" },
-                                //     { id: 3, name: "Service 3" }
-                                // ]}
-                                items={services}
-                                onChangeFunction={(e) => {inputHandler(e)}}
-                            />
-
-                            <CInput
-                                className={"date-time"}
-                                type="datetime-local"
-                                placeholder="Date"
-                                name="date"
-                                disabled=""
-                                value={newAppointment.date || ""} 
-                                onChangeFunction={(e) => {inputHandler(e)}}
-                            />
-                            <div className="create-appointment-buttons">
-                                <CButton
-                                    className="new-appointment-save"
-                                    title="Save"
-                                    onClickFunction={createAppointment}
+            <div className="body-content">
+                <div className="appointment-status-selectors">
+                    <CButton
+                        className={`appointment-status-selector ${status === 'pending' ? 'active' : ''}`}
+                        title="Pending"
+                        onClickFunction={() => setStatus("pending")}
+                    />
+                    <CButton
+                        className={`appointment-status-selector ${status === 'done' ? 'active' : ''}`}
+                        title="Done"
+                        onClickFunction={() => setStatus("done")}
+                    />
+                    <CButton
+                        className={`appointment-status-selector ${status === 'cancelled' ? 'active' : ''}`}
+                        title="Cancelled"
+                        onClickFunction={() => setStatus("cancelled")}
+                    />
+                </div>
+                { (openNew)
+                    ?<CCard
+                        className= {"new-appointment"}
+                        title= {""}
+                        content= {
+                            <div className="new-appointment-content">
+                                <CDropdown
+                                    buttonClass="artist-selector"
+                                    dropdownClass="artist-dropdown"
+                                    title="artistId"
+                                    // name="artist"
+                                    // placeholder="artist"
+                                    // items={["Artist 1", "Artist 2", "Artist 3"]}
+                                    // items={[
+                                    //     { id: 1, name: "Artist 1" },
+                                    //     { id: 2, name: "Artist 2" },
+                                    //     { id: 3, name: "Artist 3" }
+                                    // ]}
+                                    items={artists}
+                                    onChangeFunction={(e) => {inputHandler(e)}}
                                 />
-                                <CButton
-                                    className="new-appointment-cancel"
-                                    title="Cancel"
-                                    onClickFunction={() => {
-                                        setOpenNew(false);
-                                        setNewAppointment({
-                                            customerId: "",
-                                            artistId: "",
-                                            serviceId: "",
-                                            date: "",
-                                        });
-                                    }}
+                                <CDropdown
+                                    buttonClass="service-selector"
+                                    dropdownClass="service-dropdown"
+                                    title="serviceId"
+                                    // name="service"
+                                    // placeholder="service"
+                                    // items={["Service 1", "Service 2", "Service 3"]}
+                                    // items={[
+                                    //     { id: 1, name: "Service 1" },
+                                    //     { id: 2, name: "Service 2" },
+                                    //     { id: 3, name: "Service 3" }
+                                    // ]}
+                                    items={services}
+                                    onChangeFunction={(e) => {inputHandler(e)}}
                                 />
+                                <CInput
+                                    className={"date-time"}
+                                    type="datetime-local"
+                                    placeholder="Date"
+                                    name="date"
+                                    disabled=""
+                                    value={date || ""}
+                                    onChangeFunction={(e) => {inputHandler(e)}}
+                                    // min={new Date().toISOString()}
+                                />
+                                <div className="create-appointment-buttons">
+                                    <CButton
+                                        className="new-appointment-save"
+                                        title="Save"
+                                        onClickFunction={createAppointment}
+                                    />
+                                    <CButton
+                                        className="new-appointment-cancel"
+                                        title="Cancel"
+                                        onClickFunction={() => {
+                                            setOpenNew(false);
+                                            setNewAppointment({
+                                                customerId: "",
+                                                artistId: "",
+                                                serviceId: "",
+                                                date: "",
+                                            });
+                                        }}
+                                    />
+                                </div>
+                                <p>{msgError}</p>
                             </div>
-                            <p>{msgError}</p>
-                        </div>
-                    }
-                    image= {""}
-                />
-                : <CButton 
-                    className="new-appointment-button"
-                    title="+"
-                    onClickFunction={() => setOpenNew(true)}
-                />
-            }
-            {/* <h1>Appointments</h1> */}
-            <div className="appointments">
-                {appointments.map((appointment) => {
-                    let dateTime = appointment.date.split("T", 2);
-                    // let dateTime = appointment.date
-                    // console.log("dateTime", dateTime);
-                    let datePreFormat = dateTime[0];
-                    let date = datePreFormat.split("-", 3).reverse().join("-");
-                    let hourMinutes = dateTime[1].split(":", 2);
-                    let time = hourMinutes.join(":")
-                    // console.log(time);
-
-                    // let dateTime = appointment.date.split("T");
-                    // let date = dateTime[0];
-                    // let time = dateTime[1].substring(0, 5); // Extract the hours and minutes directly from the timestamp string
-
-                    // console.log("date", date); // Outputs the date
-                    // console.log("time", time); // Outputs the time in "hh:mm" format
-
-                    // let dateTime = appointment.date.split("T", 2);
-                    // let date = dateTime[0];
-                    // let timeString = dateTime[1];
-                    // let dateObj = new Date(appointment.date); // Create the Date object with the "Z"
-
-                    // let hours = dateObj.getUTCHours().toString().padStart(2, '0'); // Get the hours in UTC and pad with leading zeros if necessary
-                    // let minutes = dateObj.getUTCMinutes().toString().padStart(2, '0'); // Get the minutes in UTC and pad with leading zeros if necessary
-
-                    // let time = `${hours}:${minutes}`; // Format the time as a string
-
-                    // console.log("date", date); // Outputs the date
-                    // console.log("time", time); // Outputs the time in "hh:mm" format
-                    
-                    return (
-                        <CCard 
-                            key={appointment.id}
-                            className= {"appointment"}
-                            title= {""}
-                            content= {
-                                <div className="appointment-content">
-                                    <div className="appointment-header">
-                                        {appointment.service.name}
-                                        {/* {" " + date} */}
-                                        <div className="edit-delete">
-                                            <CButton
-                                                className="edit-appointment"
-                                                title={<span class="material-symbols-outlined">
-                                                edit
-                                                </span>}
-                                                onClickFunction={() => {}}
-                                            />
-                                            <CButton
-                                                className="delete-appointment"
-                                                title={<span class="material-symbols-outlined">
-                                                delete
-                                                </span>}
-                                                onClickFunction={() => {}}
-                                            />
-                                        </div>
-                                    </div>
-                                    
-                                    <p>Artist: {appointment.artist.name}</p>
-                                    <p>Service: {appointment.service.name}</p>
-                                    {appointment.catalogue && 
-                                        <div className="appointment-content-catalogue">
-                                            <p>Catalogue: {appointment.catalogue.name}</p>
-                                            <p>Price: {appointment.catalogue.price}</p>
-                                            <div className="appointment-img">
-                                                <img src={appointment.catalogue.afterImage} alt="catalogue" />
+                        }
+                        image= {""}
+                    />
+                    : <CButton
+                        className="new-appointment-button"
+                        title="+"
+                        onClickFunction={() => setOpenNew(true)}
+                    />
+                }
+                {/* <h1>Appointments</h1> */}
+                <div className="appointments">
+                    {appointments.map((appointment) => {
+                        let dateTime = appointment.date.split("T", 2);
+                        // let dateTime = appointment.date
+                        // console.log("dateTime", dateTime);
+                        let datePreFormat = dateTime[0];
+                        let date = datePreFormat.split("-", 3).reverse().join("-");
+                        let hourMinutes = dateTime[1].split(":", 2);
+                        let time = hourMinutes.join(":")
+                        // console.log(time);
+                        // let dateTime = appointment.date.split("T");
+                        // let date = dateTime[0];
+                        // let time = dateTime[1].substring(0, 5); // Extract the hours and minutes directly from the timestamp string
+                        // console.log("date", date); // Outputs the date
+                        // console.log("time", time); // Outputs the time in "hh:mm" format
+                        // let dateTime = appointment.date.split("T", 2);
+                        // let date = dateTime[0];
+                        // let timeString = dateTime[1];
+                        // let dateObj = new Date(appointment.date); // Create the Date object with the "Z"
+                        // let hours = dateObj.getUTCHours().toString().padStart(2, '0'); // Get the hours in UTC and pad with leading zeros if necessary
+                        // let minutes = dateObj.getUTCMinutes().toString().padStart(2, '0'); // Get the minutes in UTC and pad with leading zeros if necessary
+                        // let time = `${hours}:${minutes}`; // Format the time as a string
+                        // console.log("date", date); // Outputs the date
+                        // console.log("time", time); // Outputs the time in "hh:mm" format
+                
+                        return (
+                            <CCard
+                                key={appointment.id}
+                                className= {"appointment"}
+                                title= {""}
+                                content= {
+                                    <div className="appointment-content">
+                                        <div className="appointment-header">
+                                            {appointment.service.name}
+                                            {/* {" " + date} */}
+                                            <div className="edit-delete">
+                                                <CButton
+                                                    className="edit-appointment"
+                                                    title={<span class="material-symbols-outlined">
+                                                    edit
+                                                    </span>}
+                                                    onClickFunction={() => {}}
+                                                />
+                                                <CButton
+                                                    className="delete-appointment"
+                                                    title={<span class="material-symbols-outlined">
+                                                    delete
+                                                    </span>}
+                                                    onClickFunction={() => {}}
+                                                />
                                             </div>
                                         </div>
-                                    }
-                                    <p>Date: {date}</p>
-                                    <p>Time: {time}</p>
-                                    <p>Status: {appointment.status}</p>
-                                </div>
-                            }
-                            image= {""}
-                        />
-                    );
-                })}
+                
+                                        <p>Artist: {appointment.artist.name}</p>
+                                        <p>Service: {appointment.service.name}</p>
+                                        {appointment.catalogue &&
+                                            <div className="appointment-content-catalogue">
+                                                <p>Catalogue: {appointment.catalogue.name}</p>
+                                                <p>Price: {appointment.catalogue.price}</p>
+                                                <div className="appointment-img">
+                                                    <img src={appointment.catalogue.afterImage} alt="catalogue" />
+                                                </div>
+                                            </div>
+                                        }
+                                        <p>Date: {date}</p>
+                                        <p>Time: {time}</p>
+                                        <p>Status: {appointment.status}</p>
+                                    </div>
+                                }
+                                image= {""}
+                            />
+                        );
+                    })}
+                </div>
             </div>
         </div>
     )

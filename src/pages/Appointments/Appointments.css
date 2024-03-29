@@ -1,6 +1,6 @@
 .appointmentsDesign {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
     justify-content: center;
     /* flex-grow: 1; */
@@ -9,6 +9,25 @@
 
     background-color: turquoise;
     /* background-color: yellow; */
+}
+
+.body-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    max-width: 40em;
+    flex-grow: 1;
+
+    background-color: lightblue;
+}
+
+.container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
 }
 
 .appointment-status-selectors {
@@ -143,10 +162,6 @@
     align-items: center;
 }
 
-.material-symbols-outlined-edit {
-    color:yellowgreen;
-}
-
 .delete-appointment {
     background-color: lightcoral;
     width: 2em;
@@ -185,10 +200,18 @@
 /* .appointments {
     overflow: scroll;
 } */
+.appointments{
+    /* background-color: lightpink; */
+    width: 90%;
+}
 
 .appointment {
     background-color: lightgray;
+    /* background-color: yellow; */
     max-width: 40em;
+    /* display: flex; */
+    /* flex-direction: row; */
+    /* flex-grow: 1; */
 }
 
 .appointment-content-catalogue {
