@@ -17,8 +17,8 @@
     justify-content: center;
     align-items: center;
 
-    position: sticky;
-    top: 0;
+    /* position: sticky; 
+    top: 0; */
 
     /* background-color: turquoise; */
 }
@@ -42,6 +42,57 @@
     background-color: lightgray;
 }
 
+.new-appointment-button {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+
+    /* background-color: lightskyblue; */
+    background-color: red;
+    border-radius: 1rem;
+
+    font-size: 1.5em;
+
+    width: 2rem;
+    height: 2rem;
+    line-height: 2rem;
+}
+/*TODO remove this */
+.new-appointment-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+
+    background-color: red;
+    border-radius: 50%; /* Make the button round */
+
+    width: 2rem;
+    height: 2rem;
+}
+
+.new-appointment-button::before,
+.new-appointment-button::after {
+    content: "";
+    position: absolute;
+    background-color: white;
+}
+
+.new-appointment-button::before {
+    width: 10%;
+    height: 50%;
+    left: 45%; /* Adjust these values as needed */
+    top: 25%;
+}
+
+.new-appointment-button::after {
+    width: 50%;
+    height: 10%;
+    left: 25%; /* Adjust these values as needed */
+    top: 45%;
+}
+/*TODO until here*/
 .new-appointment {
     display: flex;
     flex-direction: column;
@@ -51,6 +102,32 @@
     max-width: 40em;
     /* flex-grow: 1; */
     background-color: lightcoral;
+}
+
+.edit-delete {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+
+    padding-block: 1em;
+    padding-inline: 0.5em;
+}
+
+.edit-appointment {
+    background-color: lightgreen;
+    margin-inline: 0.5em;
+    padding-inline: 0.5em;
+    border-radius: 0.5em;
+    cursor: pointer;
+}
+
+.delete-appointment {
+    background-color: lightcoral;
+    margin-inline: 0.5em;
+    padding-inline: 0.5em;
+    border-radius: 0.5em;
+    cursor: pointer;
 }
 
 .new-appointment-content {

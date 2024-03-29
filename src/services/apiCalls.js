@@ -77,3 +77,10 @@ export const CreateAppointmentService = async (appointment, token) => {
 
     return response.json();
 }
+
+export const GetArtistsService = async () => {
+    const response = await fetch(root + "users/artists", {
+        method: "GET",
+    });
+    return response.json();
+}

@@ -6,6 +6,8 @@ import { CInput } from "../../common/CInput/CInput";
 import { CDropdown } from "../../common/CDropdown/CDropdown";
 import { CButton } from "../../common/CButton/CButton";
 import { TokenContext } from "../../App";
+import { GetServicesService } from "../../services/apiCalls";
+import { GetArtistsService } from "../../services/apiCalls";
 
 export const Appointments = () => {
     const { token, setToken } = useContext(TokenContext);
@@ -20,6 +22,9 @@ export const Appointments = () => {
     });
     const [ msgError, setMsgError ] = useState("");
     const [ status, setStatus ] = useState("pending");
+
+    const [ services, setServices ] = useState([]);
+    const [ artists, setArtists ] = useState([]);
 
     useEffect(() => {
         const getAppointments = async () => {
@@ -36,7 +41,24 @@ export const Appointments = () => {
                 customerId: token.userId
             }));
         }
-    }, []);
+    }, [status]);
+
+    useEffect(() => {
+        const fetchServices = async () => {
+            const response = await GetServicesService();
+            setServices(response.data);
+        };
+        const fetchArtists = async () => {
+            const response = await GetArtistsService();
+            setArtists(response.data);
+        };
+        if (openNew && services.length === 0) {
+            fetchServices();
+        }
+        if (openNew && artists.length === 0) {
+            fetchArtists();
+        }
+    }, [openNew]);
 
     useEffect(() => { //TODO remove
         console.log("newAppointment", newAppointment);
@@ -101,11 +123,12 @@ export const Appointments = () => {
                                 // name="artist"
                                 // placeholder="artist"
                                 // items={["Artist 1", "Artist 2", "Artist 3"]}
-                                items={[
-                                    { id: 1, name: "Artist 1" },
-                                    { id: 2, name: "Artist 2" },
-                                    { id: 3, name: "Artist 3" }
-                                ]}
+                                // items={[
+                                //     { id: 1, name: "Artist 1" },
+                                //     { id: 2, name: "Artist 2" },
+                                //     { id: 3, name: "Artist 3" }
+                                // ]}
+                                items={artists}
                                 onChangeFunction={(e) => {inputHandler(e)}}
                             />
                             <CDropdown
@@ -115,11 +138,12 @@ export const Appointments = () => {
                                 // name="service"
                                 // placeholder="service"
                                 // items={["Service 1", "Service 2", "Service 3"]}
-                                items={[
-                                    { id: 1, name: "Service 1" },
-                                    { id: 2, name: "Service 2" },
-                                    { id: 3, name: "Service 3" }
-                                ]}
+                                // items={[
+                                //     { id: 1, name: "Service 1" },
+                                //     { id: 2, name: "Service 2" },
+                                //     { id: 3, name: "Service 3" }
+                                // ]}
+                                items={services}
                                 onChangeFunction={(e) => {inputHandler(e)}}
                             />
 
@@ -153,22 +177,6 @@ export const Appointments = () => {
                                 />
                             </div>
                             <p>{msgError}</p>
-                            {/* <CInput
-                                className={"date-time"}
-                                type="date"
-                                placeholder="Date"
-                                name="date"
-                                disabled=""
-                                value={newAppointment.date || ""} 
-                                onChange={() => {}}
-                            /> */}
-                            {/* <CInput
-                                type="time"
-                                name="time"
-                                placeholder="Time"
-                                value= {newAppointment.time || ""}
-                                onChange={() => {}}
-                            /> */}
                         </div>
                     }
                     image= {""}
@@ -181,31 +189,75 @@ export const Appointments = () => {
             }
             {/* <h1>Appointments</h1> */}
             <div className="appointments">
-                {appointments.map((appointment, index) => (
-                    <CCard 
-                        key={appointment.id}
-                        className= {"appointment"}
-                        title= {""}
-                        content= {
-                            <div className="appointment-content">
-                                <p>Artist: {appointment.artist.name}</p>
-                                <p>Service: {appointment.service.name}</p>
-                                {appointment.catalogue && 
-                                    <div className="appointment-content-catalogue">
-                                        <p>Catalogue: {appointment.catalogue.name}</p>
-                                        <p>Price: {appointment.catalogue.price}</p>
-                                        <div className="appointment-img">
-                                            <img src={appointment.catalogue.afterImage} alt="catalogue" />
-                                        </div>
+                {appointments.map((appointment) => {
+                    let dateTime = appointment.date.split("T", 2);
+                    // let dateTime = appointment.date
+                    // console.log("dateTime", dateTime);
+                    let datePreFormat = dateTime[0];
+                    let date = datePreFormat.split("-", 3).reverse().join("-");
+                    let hourMinutes = dateTime[1].split(":", 2);
+                    let time = hourMinutes.join(":")
+                    // console.log(time);
+
+                    // let dateTime = appointment.date.split("T");
+                    // let date = dateTime[0];
+                    // let time = dateTime[1].substring(0, 5); // Extract the hours and minutes directly from the timestamp string
+
+                    // console.log("date", date); // Outputs the date
+                    // console.log("time", time); // Outputs the time in "hh:mm" format
+
+                    // let dateTime = appointment.date.split("T", 2);
+                    // let date = dateTime[0];
+                    // let timeString = dateTime[1];
+                    // let dateObj = new Date(appointment.date); // Create the Date object with the "Z"
+
+                    // let hours = dateObj.getUTCHours().toString().padStart(2, '0'); // Get the hours in UTC and pad with leading zeros if necessary
+                    // let minutes = dateObj.getUTCMinutes().toString().padStart(2, '0'); // Get the minutes in UTC and pad with leading zeros if necessary
+
+                    // let time = `${hours}:${minutes}`; // Format the time as a string
+
+                    // console.log("date", date); // Outputs the date
+                    // console.log("time", time); // Outputs the time in "hh:mm" format
+                    
+                    return (
+                        <CCard 
+                            key={appointment.id}
+                            className= {"appointment"}
+                            title= {""}
+                            content= {
+                                <div className="appointment-content">
+                                    <div className="edit-delete">
+                                        <CButton
+                                            className="edit-appointment"
+                                            title="/"
+                                            onClickFunction={() => {}}
+                                        />
+                                        <CButton
+                                            className="delete-appointment"
+                                            title="X"
+                                            onClickFunction={() => {}}
+                                        />
                                     </div>
-                                }
-                                <p>Date: {appointment.date.replace("T", " ")}</p>
-                                <p>Status: {appointment.status}</p>
-                            </div>
-                        }
-                        image= {""}
-                    />
-                ))}
+                                    <p>Artist: {appointment.artist.name}</p>
+                                    <p>Service: {appointment.service.name}</p>
+                                    {appointment.catalogue && 
+                                        <div className="appointment-content-catalogue">
+                                            <p>Catalogue: {appointment.catalogue.name}</p>
+                                            <p>Price: {appointment.catalogue.price}</p>
+                                            <div className="appointment-img">
+                                                <img src={appointment.catalogue.afterImage} alt="catalogue" />
+                                            </div>
+                                        </div>
+                                    }
+                                    <p>Date: {date}</p>
+                                    <p>Time: {time}</p>
+                                    <p>Status: {appointment.status}</p>
+                                </div>
+                            }
+                            image= {""}
+                        />
+                    );
+                })}
             </div>
         </div>
     )
