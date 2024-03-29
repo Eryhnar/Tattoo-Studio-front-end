@@ -68,7 +68,9 @@ export const Appointments = () => {
     const inputHandler = (e) => {
         let value = e.target.value;
         if (e.target.name === "date") {
-            value = value.replace("T", " ");
+            // value = value.replace("T", " ");
+            value += ":00.000Z";
+            console.log("value", value);
         }
         setNewAppointment((prevState) => ({
             ...prevState,
@@ -226,18 +228,27 @@ export const Appointments = () => {
                             title= {""}
                             content= {
                                 <div className="appointment-content">
-                                    <div className="edit-delete">
-                                        <CButton
-                                            className="edit-appointment"
-                                            title="/"
-                                            onClickFunction={() => {}}
-                                        />
-                                        <CButton
-                                            className="delete-appointment"
-                                            title="X"
-                                            onClickFunction={() => {}}
-                                        />
+                                    <div className="appointment-header">
+                                        {appointment.service.name}
+                                        {/* {" " + date} */}
+                                        <div className="edit-delete">
+                                            <CButton
+                                                className="edit-appointment"
+                                                title={<span class="material-symbols-outlined">
+                                                edit
+                                                </span>}
+                                                onClickFunction={() => {}}
+                                            />
+                                            <CButton
+                                                className="delete-appointment"
+                                                title={<span class="material-symbols-outlined">
+                                                delete
+                                                </span>}
+                                                onClickFunction={() => {}}
+                                            />
+                                        </div>
                                     </div>
+                                    
                                     <p>Artist: {appointment.artist.name}</p>
                                     <p>Service: {appointment.service.name}</p>
                                     {appointment.catalogue && 

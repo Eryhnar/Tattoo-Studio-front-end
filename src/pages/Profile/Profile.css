@@ -112,10 +112,10 @@
     margin-block: 1em;
 }
 
-/* .profile-input:disabled {
+.profile-input:disabled {
     background-color: transparent;
     border: none;
-} */
+}
 
 .change-password-button {
     margin-block: 1em;

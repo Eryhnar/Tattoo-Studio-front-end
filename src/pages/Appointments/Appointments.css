@@ -104,30 +104,61 @@
     background-color: lightcoral;
 }
 
+.appointment-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+    padding-block: 1em;
+    padding-inline: 1em;
+
+    background-color: rgb(68, 173, 156);
+
+}
+
 .edit-delete {
     display: flex;
     flex-direction: row;
     justify-content: flex-end;
     align-items: center;
 
-    padding-block: 1em;
-    padding-inline: 0.5em;
+    /* padding-block: 1em; */
+    /* padding-inline: 1em; */
+
+    background-color: rgb(68, 173, 156);
 }
 
 .edit-appointment {
     background-color: lightgreen;
-    margin-inline: 0.5em;
-    padding-inline: 0.5em;
+    /* margin-inline: 0.5em; */
+    /* padding-inline: 0.5em; */
+    width: 2em;
+    height: 2em;
     border-radius: 0.5em;
     cursor: pointer;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.material-symbols-outlined-edit {
+    color:yellowgreen;
 }
 
 .delete-appointment {
     background-color: lightcoral;
-    margin-inline: 0.5em;
-    padding-inline: 0.5em;
+    width: 2em;
+    height: 2em;
     border-radius: 0.5em;
     cursor: pointer;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    margin-left: 1em;
 }
 
 .new-appointment-content {
