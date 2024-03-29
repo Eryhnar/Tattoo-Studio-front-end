@@ -142,10 +142,10 @@
     justify-content: flex-end;
     align-items: center;
 
-    /* padding-block: 1em; */
-    /* padding-inline: 1em; */
+    padding-block: 1em;
+    padding-inline: 1em;
 
-    background-color: rgb(68, 173, 156);
+    /* background-color: rgb(68, 173, 156); */
 }
 
 .edit-appointment {

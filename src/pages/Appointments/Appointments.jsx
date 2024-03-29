@@ -229,28 +229,28 @@ export const Appointments = () => {
                                 content= {
                                     <div className="appointment-content">
                                         <div className="appointment-header">
-                                            {appointment.service.name}
+                                            {"Service: " + appointment.service.name}
                                             {/* {" " + date} */}
-                                            <div className="edit-delete">
-                                                <CButton
-                                                    className="edit-appointment"
-                                                    title={<span class="material-symbols-outlined">
-                                                    edit
-                                                    </span>}
-                                                    onClickFunction={() => {}}
-                                                />
-                                                <CButton
-                                                    className="delete-appointment"
-                                                    title={<span class="material-symbols-outlined">
-                                                    delete
-                                                    </span>}
-                                                    onClickFunction={() => {}}
-                                                />
-                                            </div>
+                                        </div>
+                                        <div className="edit-delete">
+                                            <CButton
+                                                className="edit-appointment"
+                                                title={<span class="material-symbols-outlined">
+                                                edit
+                                                </span>}
+                                                onClickFunction={() => {}}
+                                            />
+                                            <CButton
+                                                className="delete-appointment"
+                                                title={<span class="material-symbols-outlined">
+                                                delete
+                                                </span>}
+                                                onClickFunction={() => {}}
+                                            />
                                         </div>
                 
                                         <p>Artist: {appointment.artist.name}</p>
-                                        <p>Service: {appointment.service.name}</p>
+                                        {/* <p>Service: {appointment.service.name}</p> */}
                                         {appointment.catalogue &&
                                             <div className="appointment-content-catalogue">
                                                 <p>Catalogue: {appointment.catalogue.name}</p>
@@ -262,7 +262,7 @@ export const Appointments = () => {
                                         }
                                         <p>Date: {date}</p>
                                         <p>Time: {time}</p>
-                                        <p>Status: {appointment.status}</p>
+                                        {/* <p>Status: {appointment.status}</p> */}
                                     </div>
                                 }
                                 image= {""}
