@@ -1,11 +1,24 @@
-.servicesDesign {
+.services-design {
+    --title-color: rgb(207, 139, 13);
+    --accent-color: rgb(113, 113, 113);
+    --dark-color: rgb(35, 36, 37);
+
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: rgb(35, 36, 37);
+    background-color: var(--accent-color);
 
     min-height: 90svh;
+}
+
+.services-design {
+    color: white;
+}
+
+.services-design h1 {
+    color: var(--title-color);
+    font-size: 5rem;
 }
 
 .services {
@@ -14,15 +27,18 @@
 }
 
 .services h2 {
-    font-size: 2em;
-    color: orange;
+    font-size: 2rem;
+    color: var(--title-color);
 }
 
 .service {
     width: 100%;
-    background-color: rgb(105, 94, 94);
+    background-color: var(--dark-color);
+    border-radius: 1rem;
+    box-shadow: 1rem 1rem 1rem black;
+    margin-block: 3rem;
 }
 
-.service h2 {
-    /* color: white; */
+.service div {
+    padding-bottom: 2rem;
 }
