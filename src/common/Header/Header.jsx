@@ -16,12 +16,12 @@ export const Header = () => {
     };
 
     return (
-        <div className="headerDesign">
-            <div className="headerLeft">
+        <div className="header-design">
+            <div className="header-left">
                 <NavButton title="Home" path="/" />
                 <NavButton title="Services" path="/services" />
             </div>
-            <div className="headerRight">
+            <div className="header-right">
                 {token ? (
                     <>
                         <NavButton title="Appointments" path="/appointments" />

@@ -1,9 +1,28 @@
 .servicesDesign {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    flex-direction: column;
-    background-color: cornflowerblue;
+    background-color: rgb(35, 36, 37);
 
     min-height: 90svh;
+}
+
+.services {
+    max-width: 80vw;
+    width: 100%;
+}
+
+.services h2 {
+    font-size: 2em;
+    color: orange;
+}
+
+.service {
+    width: 100%;
+    background-color: rgb(105, 94, 94);
+}
+
+.service h2 {
+    /* color: white; */
 }

@@ -6,7 +6,7 @@ export const NavButton = ({ title, path }) => {
     const navigate = useNavigate();
 
     return (
-        <div className="navButtonDesign" onClick={() => navigate(path)}>
+        <div className="nav-button-design" onClick={() => navigate(path)}>
             {title}
         </div>
     )

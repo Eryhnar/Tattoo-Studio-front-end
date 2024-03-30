@@ -1,11 +1,11 @@
 .homeDesign{
-    /* display: flex; */
-    /* flex-direction: column; */
-    /* justify-content: center; */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     /* align-items: center; */
     min-height: 90svh;
     /* width: 100%;  */
-    flex-grow: 1;
+    /* flex-grow: 1; */
     background-color: purple;
 }
 /*
