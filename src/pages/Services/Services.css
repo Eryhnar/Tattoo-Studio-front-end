@@ -19,6 +19,7 @@
 .services-design h1 {
     color: var(--title-color);
     font-size: 5rem;
+    font-family: Dancing Script, cursive;
 }
 
 .services {
