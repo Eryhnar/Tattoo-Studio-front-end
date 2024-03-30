@@ -1,8 +1,8 @@
 .homeDesign{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    /* display: flex; */
+    /* flex-direction: column; */
+    /* justify-content: center; */
+    /* align-items: center; */
     min-height: 90svh;
     /* width: 100%;  */
     flex-grow: 1;
@@ -59,26 +59,76 @@
     align-items: center;
 
 } */
-.home-article-left {
+
+.home-article-left,
+.home-article-right {
+    display: flex;
+    flex-wrap: wrap;
+    /* grid-template-columns: repeat(auto-fill, minmax(20em, 1fr)); */
+    /* gap: 1em; */
+    justify-content: center;
+    align-items: center;
+    /* margin: auto; */
+    /* margin:auto; */
+    /* max-width: 60em; */
+    margin-block: 2em;
+    background-color: lightcoral;
+}
+
+.home-article-grid {
+
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(20em, 1fr));
     gap: 1em;
-    justify-content: center;
-    align-items: center;
-    margin-inline: 20em;
+    /* justify-content: center; */
+    /* align-items: center; */
+    /* margin-inline: auto; */
+    /* margin:auto; */
+    /* max-width: 60em; */
+    margin-block: 2em;
+    /* margin: auto; */
+    background-color: blue;
+    justify-self: center;
 }
 
 .home-article-text {
-
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    background-color: lightblue;
+    padding: 1em;
+    border-radius: 1em;
+    overflow-wrap: break-word; /* Add this line */
+    word-wrap: break-word; /* Add this line */
 }
 
+/* .home-article-text p,
+.home-article-text h2 {
+    text-align: center; 
+    background-color: lightblue;
+    padding: 1em;
+    border-radius: 1em;
+    word-wrap: break-word; 
+} */
+
 .home-article-image-container {
-    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* max-width: 20em; */
+    background-color: lime;
+
 }
 
 img {
-    max-width: 100%;
+    max-width: 20em;
     display: block;
+}
+
+.home-where iframe{
+    margin-block: 2em;
 }
 
 /* .viewDesign{
