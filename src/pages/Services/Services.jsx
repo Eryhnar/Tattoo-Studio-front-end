@@ -24,7 +24,9 @@ export const Services = () => {
 
     return (
         <div className="services-design">
-            <h1>Services</h1>
+            <div className="services-banner">
+                <h1>Services</h1>
+            </div>
             {/* <p>Check out our services!</p> */}
             <div className="services">
                 {services.map((service, index) => (

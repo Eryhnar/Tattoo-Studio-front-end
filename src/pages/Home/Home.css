@@ -104,14 +104,27 @@ img {
 }
 
 .home-map-container {
-    max-width: 100%;
-    height: 0em;
+    max-width: 30em;
+    max-height: 10em;
+    height: 0;
     margin-block: 2em;
-    margin-inline: 1em;
+    margin-inline: auto;
 
     position: relative;
-    padding-bottom: 100%;
+    padding-bottom: 75%;
 }
+
+@media screen and (min-width: 700px) {
+    .home-map-container {
+      padding-bottom: 50%; 
+    }
+}
+@media screen and (min-width: 1200px) {
+    .home-map-container {
+      padding-bottom: 30%; 
+    }
+}
+
 
 .home-map-container iframe {
     width: 100%;
