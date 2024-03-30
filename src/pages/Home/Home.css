@@ -96,22 +96,15 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    flex-wrap: wrap;
+    /* flex-wrap: wrap; */
     background-color: lightblue;
     padding: 1em;
-    border-radius: 1em;
-    overflow-wrap: break-word; /* Add this line */
-    word-wrap: break-word; /* Add this line */
+    /* border-radius: 1em; */
+    /* overflow-wrap: break-word;  */
+    /* word-wrap: break-word;  */
 }
 
-/* .home-article-text p,
-.home-article-text h2 {
-    text-align: center; 
-    background-color: lightblue;
-    padding: 1em;
-    border-radius: 1em;
-    word-wrap: break-word; 
-} */
+
 
 .home-article-image-container {
     display: flex;
@@ -130,12 +123,3 @@ img {
 .home-where iframe{
     margin-block: 2em;
 }
-
-/* .viewDesign{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%; 
-    flex-direction: column;
-    background-color: lightseagreen;
-} */
