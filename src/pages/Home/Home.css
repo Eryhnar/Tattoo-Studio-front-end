@@ -1,11 +1,84 @@
 .homeDesign{
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     min-height: 90svh;
     /* width: 100%;  */
     flex-grow: 1;
     background-color: purple;
+}
+/*
+.home-main-banner {
+    background-image: url('https://i.imgur.com/e7jcieX.jpeg');
+    background-size: cover;
+    background-position-y: 30%;
+    width: 100%;
+    min-height: 40em;
+}
+*/
+
+.home-main-banner {
+    position: relative;
+    width: 100%;
+    min-height: 75svh;
+    overflow: hidden; 
+}
+
+.home-main-banner::before {
+    content: "";
+    position: absolute;
+    top: -10%; 
+    right: -10%;
+    bottom: -10%;
+    left: -10%;
+    background-image: url('https://i.imgur.com/e7jcieX.jpeg');
+    background-size: cover;
+    background-position-y: 35%;
+    filter: blur(5px);
+}
+
+.home-main-banner-text {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    color: black;
+    text-align: center;
+
+}
+
+/* .home-article-left {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+
+} */
+.home-article-left {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(20em, 1fr));
+    gap: 1em;
+    justify-content: center;
+    align-items: center;
+    margin-inline: 20em;
+}
+
+.home-article-text {
+
+}
+
+.home-article-image-container {
+    
+}
+
+img {
+    max-width: 100%;
+    display: block;
 }
 
 /* .viewDesign{
