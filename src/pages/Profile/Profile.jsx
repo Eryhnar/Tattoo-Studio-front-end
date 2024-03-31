@@ -104,14 +104,14 @@ export const Profile = () => {
                                 ? <div className="edit-fields">
                                     <CButton 
                                     className={"edit-icon"}
-                                    title={<span class="material-symbols-outlined">edit</span>}
+                                    title={<span className="material-symbols-outlined">edit</span>}
                                     onClickFunction={() => writeField("name")}
                                     /> 
                                 </div>
                                 : <div className="edit-fields">
                                     <CButton
                                         className={"save-icon"}
-                                        title={<span class="material-symbols-outlined">done</span>}
+                                        title={<span className="material-symbols-outlined">done</span>}
                                         onClickFunction={async () => {
                                             const newProfile = await updateProfile(profile);
                                             if (newProfile) {
@@ -124,7 +124,7 @@ export const Profile = () => {
                                     />
                                     <CButton
                                         className={"cancel-icon"}
-                                        title={<span class="material-symbols-outlined">close</span>}
+                                        title={<span className="material-symbols-outlined">close</span>}
                                         onClickFunction={() => {
                                             writeField("name");
                                             resetProfile();
@@ -147,14 +147,14 @@ export const Profile = () => {
                                 ? <div className="edit-fields">
                                     <CButton 
                                     className={"edit-icon"}
-                                    title={<span class="material-symbols-outlined">edit</span>}
+                                    title={<span className="material-symbols-outlined">edit</span>}
                                     onClickFunction={() => writeField("surname")}
                                     /> 
                                 </div>
                                 : <div className="edit-fields">
                                     <CButton
                                         className={"save-icon"}
-                                        title={<span class="material-symbols-outlined">done</span>}
+                                        title={<span className="material-symbols-outlined">done</span>}
                                         onClickFunction={async () => {
                                             const newProfile = await updateProfile(profile);
                                             if (newProfile) {
@@ -167,7 +167,7 @@ export const Profile = () => {
                                     />
                                     <CButton
                                         className={"cancel-icon"}
-                                        title={<span class="material-symbols-outlined">close</span>}
+                                        title={<span className="material-symbols-outlined">close</span>}
                                         onClickFunction={() => {
                                             writeField("surname");
                                             resetProfile();

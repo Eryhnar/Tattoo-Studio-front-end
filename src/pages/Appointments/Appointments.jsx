@@ -11,28 +11,29 @@ import { GetArtistsService } from "../../services/apiCalls";
 
 export const Appointments = () => {
     const { token, setToken } = useContext(TokenContext);
-    const [ appointments, setAppointments ] = useState([]);
-    const [ openNew, setOpenNew ] = useState(false);
-    const [ newAppointment, setNewAppointment ] = useState({
+    const [appointments, setAppointments] = useState([]);
+    const [openNew, setOpenNew] = useState(false);
+    const [newAppointment, setNewAppointment] = useState({
         customerId: "",
         artistId: "",
         serviceId: "",
         date: "",
     });
-    const [ date, setDate ] = useState("");
+    const [date, setDate] = useState("");
 
-    const [ msgError, setMsgError ] = useState("");
-    const [ status, setStatus ] = useState("pending");
+    const [msgError, setMsgError] = useState("");
+    const [status, setStatus] = useState("pending");
 
-    const [ services, setServices ] = useState([]);
-    const [ artists, setArtists ] = useState([]);
+    const [services, setServices] = useState([]);
+    const [artists, setArtists] = useState([]);
 
     useEffect(() => {
         const getAppointments = async () => {
+            console.log("status", status)
             const token = localStorage.getItem("token");
             const response = await GetAppointmentsService(status, JSON.parse(localStorage.getItem("token")));
             setAppointments(response.data);
-            console.log("response data",response.data);
+            console.log("response data", response.data);
         };
         getAppointments();
         if (token.roleName === "customer") {
@@ -73,7 +74,12 @@ export const Appointments = () => {
         }));
     };
 
-
+    const toggleCardVisibility = (e) => {
+        if (!e.target.classList.contains("appointment-header")) return;
+        let card = e.target.closest(".appointment").querySelector(".appointment-body");
+        card.classList.toggle("appointment-body-hidden");
+        e.target.classList.toggle("appointment-header-closed");
+    };
 
     const createAppointment = async () => {
         try {
@@ -109,25 +115,25 @@ export const Appointments = () => {
                         onClickFunction={() => setStatus("cancelled")}
                     />
                 </div>
-                { (openNew)
-                    ?<CCard
-                        className= {"new-appointment"}
-                        title= {""}
-                        content= {
+                {(openNew)
+                    ? <CCard
+                        className={"new-appointment"}
+                        title={""}
+                        content={
                             <div className="new-appointment-content">
                                 <CDropdown
                                     buttonClass="artist-selector"
                                     dropdownClass="artist-dropdown"
                                     title="artistId"
                                     items={artists}
-                                    onChangeFunction={(e) => {inputHandler(e)}}
+                                    onChangeFunction={(e) => { inputHandler(e) }}
                                 />
                                 <CDropdown
                                     buttonClass="service-selector"
                                     dropdownClass="service-dropdown"
                                     title="serviceId"
                                     items={services}
-                                    onChangeFunction={(e) => {inputHandler(e)}}
+                                    onChangeFunction={(e) => { inputHandler(e) }}
                                 />
                                 <CInput
                                     className={"date-time"}
@@ -136,7 +142,7 @@ export const Appointments = () => {
                                     name="date"
                                     disabled=""
                                     value={date || ""}
-                                    onChangeFunction={(e) => {inputHandler(e)}}
+                                    onChangeFunction={(e) => { inputHandler(e) }}
                                 />
                                 <div className="create-appointment-buttons">
                                     <CButton
@@ -161,11 +167,11 @@ export const Appointments = () => {
                                 <p>{msgError}</p>
                             </div>
                         }
-                        image= {""}
+                        image={""}
                     />
                     : <CButton
                         className="new-appointment-button"
-                        title={<span class="material-symbols-outlined">add</span>}
+                        title={<span className="material-symbols-outlined">add</span>}
                         onClickFunction={() => setOpenNew(true)}
                     />
                 }
@@ -176,32 +182,32 @@ export const Appointments = () => {
                         let date = datePreFormat.split("-", 3).reverse().join("-");
                         let hourMinutes = dateTime[1].split(":", 2);
                         let time = hourMinutes.join(":")
-                
+
                         return (
                             <CCard
                                 key={appointment.id}
-                                className= {"appointment"}
-                                title= {""}
-                                content= {
-                                    <div className="appointment-content">
-                                        <div className="appointment-header">
+                                className={"appointment"}
+                                title={""}
+                                content={
+                                    <div className="appointment-content" onClick={toggleCardVisibility}>
+                                        <div className="appointment-header appointment-header-closed">
                                             {"Service: " + appointment.service.name}
                                         </div>
-                                        <div className="appointment-body">
-                                        
+                                        <div className="appointment-body appointment-body-hidden">
+
                                             <div className="edit-delete">
                                                 <CButton
                                                     className="edit-appointment"
-                                                    title={<span class="material-symbols-outlined">edit</span>}
-                                                    onClickFunction={() => {}}
+                                                    title={<span className="material-symbols-outlined">edit</span>}
+                                                    onClickFunction={() => { }}
                                                 />
                                                 <CButton
                                                     className="delete-appointment"
-                                                    title={<span class="material-symbols-outlined">delete</span>}
-                                                    onClickFunction={() => {}}
+                                                    title={<span className="material-symbols-outlined">delete</span>}
+                                                    onClickFunction={() => { }}
                                                 />
                                             </div>
-                    
+
                                             {/* <p>Artist: {appointment.artist.name}</p>
                                             <p>Date: {date}</p>
                                             <p>Time: {time}</p>
@@ -227,18 +233,17 @@ export const Appointments = () => {
                                                         </div>
                                                     }
                                                 </div>
-                                                    <div className="appointment-img">
-                                                        {appointment.catalogue ?
-                                                            <img src={appointment.catalogue.afterImage} alt="catalogue" />
-                                                            : "picture not available"
-                                                        }
-                                                    </div>
+                                                <div className="appointment-img">
+                                                    {appointment.catalogue ?
+                                                        <img src={appointment.catalogue.afterImage} alt="catalogue" />
+                                                        : "picture not available"
+                                                    }
                                                 </div>
-                                            {/* <p>Status: {appointment.status}</p> */}
+                                            </div>
                                         </div>
                                     </div>
                                 }
-                                image= {""}
+                                image={""}
                             />
                         );
                     })}

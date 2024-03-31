@@ -16,8 +16,7 @@
     justify-content: flex-start;
     align-items: center;
 
-    min-height: 40em;
-    max-width: 40em;
+    min-height: 90svh;
     flex-grow: 1;
 
     background-color: var(--dark-color);
@@ -157,4 +156,10 @@
 .change-password-button:active {
     background-color: rgb(202, 202, 202);
     transform: translateY(0.3rem);
+}
+
+@media (min-width: 1080px) {
+    .profile-card {
+        max-width: 80vw;
+    }
 }

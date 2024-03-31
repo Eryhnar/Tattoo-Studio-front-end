@@ -18,7 +18,7 @@
     align-items: center;
 
     min-height: 90svh;
-    max-width: 40em;
+    /* max-width: 40em; */
     flex-grow: 1;
 
     background-color: var(--dark-color);
@@ -110,4 +110,10 @@
 
     cursor: pointer;
     user-select: none;
+}
+
+@media (min-width: 1080px) {
+    .register-card {
+        max-width: 80vw;
+    }
 }
