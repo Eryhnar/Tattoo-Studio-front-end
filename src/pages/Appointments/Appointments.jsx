@@ -18,7 +18,6 @@ export const Appointments = () => {
         artistId: "",
         serviceId: "",
         date: "",
-        // time: "",
     });
     const [ date, setDate ] = useState("");
 
@@ -31,7 +30,6 @@ export const Appointments = () => {
     useEffect(() => {
         const getAppointments = async () => {
             const token = localStorage.getItem("token");
-            // console.log(token);
             const response = await GetAppointmentsService(status, JSON.parse(localStorage.getItem("token")));
             setAppointments(response.data);
             console.log("response data",response.data);
@@ -62,17 +60,10 @@ export const Appointments = () => {
         }
     }, [openNew]);
 
-    useEffect(() => { //TODO remove
-        console.log("newAppointment", newAppointment);
-        // console.log("token", token)
-    }, [newAppointment]);
-
     const inputHandler = (e) => {
         let value = e.target.value;
-        /* TODO reimplement this */
         if (e.target.name === "date") {
             setDate(value);
-            // value = value.replace("T", " ");
             value += ":00.000Z";
             console.log("value", value);
         }
@@ -128,14 +119,6 @@ export const Appointments = () => {
                                     buttonClass="artist-selector"
                                     dropdownClass="artist-dropdown"
                                     title="artistId"
-                                    // name="artist"
-                                    // placeholder="artist"
-                                    // items={["Artist 1", "Artist 2", "Artist 3"]}
-                                    // items={[
-                                    //     { id: 1, name: "Artist 1" },
-                                    //     { id: 2, name: "Artist 2" },
-                                    //     { id: 3, name: "Artist 3" }
-                                    // ]}
                                     items={artists}
                                     onChangeFunction={(e) => {inputHandler(e)}}
                                 />
@@ -143,14 +126,6 @@ export const Appointments = () => {
                                     buttonClass="service-selector"
                                     dropdownClass="service-dropdown"
                                     title="serviceId"
-                                    // name="service"
-                                    // placeholder="service"
-                                    // items={["Service 1", "Service 2", "Service 3"]}
-                                    // items={[
-                                    //     { id: 1, name: "Service 1" },
-                                    //     { id: 2, name: "Service 2" },
-                                    //     { id: 3, name: "Service 3" }
-                                    // ]}
                                     items={services}
                                     onChangeFunction={(e) => {inputHandler(e)}}
                                 />
@@ -162,7 +137,6 @@ export const Appointments = () => {
                                     disabled=""
                                     value={date || ""}
                                     onChangeFunction={(e) => {inputHandler(e)}}
-                                    // min={new Date().toISOString()}
                                 />
                                 <div className="create-appointment-buttons">
                                     <CButton
@@ -195,31 +169,13 @@ export const Appointments = () => {
                         onClickFunction={() => setOpenNew(true)}
                     />
                 }
-                {/* <h1>Appointments</h1> */}
                 <div className="appointments">
                     {appointments.map((appointment) => {
                         let dateTime = appointment.date.split("T", 2);
-                        // let dateTime = appointment.date
-                        // console.log("dateTime", dateTime);
                         let datePreFormat = dateTime[0];
                         let date = datePreFormat.split("-", 3).reverse().join("-");
                         let hourMinutes = dateTime[1].split(":", 2);
                         let time = hourMinutes.join(":")
-                        // console.log(time);
-                        // let dateTime = appointment.date.split("T");
-                        // let date = dateTime[0];
-                        // let time = dateTime[1].substring(0, 5); // Extract the hours and minutes directly from the timestamp string
-                        // console.log("date", date); // Outputs the date
-                        // console.log("time", time); // Outputs the time in "hh:mm" format
-                        // let dateTime = appointment.date.split("T", 2);
-                        // let date = dateTime[0];
-                        // let timeString = dateTime[1];
-                        // let dateObj = new Date(appointment.date); // Create the Date object with the "Z"
-                        // let hours = dateObj.getUTCHours().toString().padStart(2, '0'); // Get the hours in UTC and pad with leading zeros if necessary
-                        // let minutes = dateObj.getUTCMinutes().toString().padStart(2, '0'); // Get the minutes in UTC and pad with leading zeros if necessary
-                        // let time = `${hours}:${minutes}`; // Format the time as a string
-                        // console.log("date", date); // Outputs the date
-                        // console.log("time", time); // Outputs the time in "hh:mm" format
                 
                         return (
                             <CCard
@@ -230,7 +186,6 @@ export const Appointments = () => {
                                     <div className="appointment-content">
                                         <div className="appointment-header">
                                             {"Service: " + appointment.service.name}
-                                            {/* {" " + date} */}
                                         </div>
                                         <div className="edit-delete">
                                             <CButton

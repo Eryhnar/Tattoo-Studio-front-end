@@ -30,6 +30,9 @@
     font-family: Dancing Script, cursive;
     margin: 0;
     padding: 0;
+
+    background-color: var(--dark-color);
+    width: 100%;
 }
 
 .services {
