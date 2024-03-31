@@ -88,7 +88,9 @@
 
     max-width: 40rem;
 
-    background-color: lightcoral;
+    background-color: var(--mid-range-color);
+    border: #ebc95b 0.2rem solid;
+    border-radius: 1rem;
 }
 
 .appointment-header {
@@ -181,6 +183,41 @@
     margin: 1rem;
 }
 
+.artist-selector, .service-selector, .date-time {
+    background-color: white;
+    color: var(--dark-color);
+
+    border-radius: 1rem;
+    padding-inline: 0.5rem;
+    padding-block: 0.2rem;
+    /* box-shadow: 0rem 0.3rem 1rem black; */
+
+    cursor: pointer;
+
+    font-weight: 600;
+}
+
+.new-appointment-save, 
+.new-appointment-cancel {
+    background-color: var(--title-color);
+    color: var(--dark-color);
+
+    border-radius: 1rem;
+    padding-inline: 0.5rem;
+    padding-block: 0.2rem;
+    box-shadow: 0rem 0.3rem 1rem black;
+
+    cursor: pointer;
+
+    font-weight: 600;
+}
+
+.new-appointment-save:active, 
+.new-appointment-cancel:active {
+    transform: translateY(0.3rem);
+}
+
+
 .appointments{
     /* background-color: lightpink; */
     /* display: flex; */
@@ -203,9 +240,9 @@
     color: white;
 }
 
-.appointment-content {
+/* .appointment-content {
     
-}
+} */
 
 .appointment-body-hidden {
     display: none;
