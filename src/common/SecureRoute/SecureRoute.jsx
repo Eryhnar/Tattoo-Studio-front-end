@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Navigate, Route, useNavigate } from 'react-router-dom';
+import { Navigate, Route, useNavigate, Outlet } from 'react-router-dom';
 import { TokenContext } from '../../App';
 
 export const SecureRoute = ({ childElement, protMode }) => {
@@ -21,15 +21,18 @@ export const SecureRoute = ({ childElement, protMode }) => {
     useEffect(() => {
         switch (protMode) {
             case 'allow-logged-out':
-                !token ? null : navigate("/");
+                if (token) navigate("/");
+                break;
             case 'allow-logged-in':
-                token ? null : navigate("/");
+                if (!token) navigate("/");
+                break;
             case 'allow-logged-in-admin':
-                token && token.role.includes("admin") ? null : navigate("/");
+                if (!token || !token.roleName.includes("admin")) navigate("/");
+                break;
             default:
                 navigate("/");
         }
-    }, []);
+    }, [protMode, token, navigate]);
     // switch (protMode) {
     //     case 'allow-logged-out':
     //         !token ? navigate()
@@ -41,4 +44,5 @@ export const SecureRoute = ({ childElement, protMode }) => {
     //     default:
     //         return <Redirect to="/" />;
     // }
+    return <Outlet />;
 }
