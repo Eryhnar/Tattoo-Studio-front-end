@@ -22,9 +22,9 @@
     justify-content: center;
 
     min-height: 90svh;
-    max-width: 40em;
-    flex-grow: 1;
+    /* max-width: 40em; */
 
+    width: 80vw;
     background-color: var(--dark-color);
 }
 
@@ -54,10 +54,10 @@
     align-items: center;
 
     background-color: white;
-    border-radius: 0.5em;
-    padding-inline: 0.5em;
-    margin-inline: 0.5em;
-    margin-block: 1em;
+    border-radius: 0.5rem;
+    padding-inline: 0.5rem;
+    margin-inline: 0.5rem;
+    margin-block: 1rem;
 
     cursor: pointer;
 }
@@ -124,7 +124,7 @@
     align-items: center;
     justify-content: center;
 
-    max-width: 40em;
+    max-width: 40rem;
     /* flex-grow: 1; */
     background-color: lightcoral;
 }
@@ -135,11 +135,17 @@
     justify-content: space-between;
     align-items: center;
 
-    padding-block: 1em;
-    padding-inline: 1em;
+    padding-block: 1rem;
+    padding-inline: 1rem;
 
-    background-color: rgb(68, 173, 156);
+    /* background-color: rgb(68, 173, 156); */
+    background-color: var(--accent-color);
 
+    border-top-left-radius: 1rem;
+    border-top-right-radius: 1rem;
+
+    color: white;
+    font-size: 1.5rem;
 }
 
 .edit-delete {
@@ -148,19 +154,20 @@
     justify-content: flex-end;
     align-items: center;
 
-    padding-block: 1em;
-    padding-inline: 1em;
+    padding-block: 1rem;
+    padding-inline: 1rem;
 
     /* background-color: rgb(68, 173, 156); */
 }
 
 .edit-appointment {
-    background-color: lightgreen;
+    /* background-color: lightgreen; */
+    background-color: green;
     /* margin-inline: 0.5em; */
     /* padding-inline: 0.5em; */
-    width: 2em;
-    height: 2em;
-    border-radius: 0.5em;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 0.5rem;
     cursor: pointer;
 
     display: flex;
@@ -169,17 +176,18 @@
 }
 
 .delete-appointment {
-    background-color: lightcoral;
-    width: 2em;
-    height: 2em;
-    border-radius: 0.5em;
+    /* background-color: lightcoral; */
+    background-color: red;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 0.5rem;
     cursor: pointer;
 
     display: flex;
     justify-content: center;
     align-items: center;
 
-    margin-left: 1em;
+    margin-left: 1rem;
 }
 
 .new-appointment-content {
@@ -188,7 +196,7 @@
     align-items: center;
     justify-content: center;
 
-    max-width: 40em;
+    max-width: 40rem;
     /* background-color: lightcoral; */
 }
 
@@ -199,8 +207,8 @@
     align-items: center;
 }
 .artist-selector, .service-selector, .date-time, .new-appointment-save, .new-appointment-cancel {
-    width: 10em;
-    margin: 1em;
+    width: 10rem;
+    margin: 1rem;
 }
 
 /* .appointments {
@@ -208,16 +216,81 @@
 } */
 .appointments{
     /* background-color: lightpink; */
-    width: 90%;
+    /* display: flex; */
+    flex-direction: column;
+    align-items: center;
+    /* justify-content: center; */
+
+    /* width: 90%; */
 }
 
 .appointment {
     background-color: lightgray;
     /* background-color: yellow; */
-    max-width: 40em;
+    max-width: 40rem;
     /* display: flex; */
     /* flex-direction: row; */
     /* flex-grow: 1; */
+    margin-block: 2rem;
+
+    border-radius: 1rem;
+}
+
+.appointment-content {
+    
+}
+
+/* .appointment-container {
+    display: flex;
+    flex-direction: row-reverse;
+    gap: 2em;
+    justify-content: center;
+    background-color: lightcoral;
+} */
+.appointment-container {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    /* flex-direction: row-reverse; */
+    /* gap: 2em; */
+    justify-content: center;
+    /* background-color: lightcoral; */
+    min-height: 20rem;
+    padding-inline: 2rem;
+}
+
+.appointment-container > .appointment-img {
+    order: 1;
+}
+
+.appointment-container > .appointment-text {
+    order: 2;
+}
+
+.appointment-text {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    /* background-color: lightblue; */
+
+    padding-inline: 5rem;
+
+}
+
+.appointment-img{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    /* background-color: blue; */
+}
+
+.appointment-img img{
+    /* display: block; */
+    object-fit: cover;
+    /* width: 100%; */
+    /* height: auto; */
 }
 
 .appointment-content-catalogue {
@@ -225,7 +298,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    max-width: 40em;
+    max-width: 40rem;
 }
 
 /* .appointment-content-catalogue img {
@@ -235,7 +308,7 @@
 } */
 
 .appointment-img {
-    max-width: 20em;
+    max-width: 20rem;
 }
 
 .appointment-img img {

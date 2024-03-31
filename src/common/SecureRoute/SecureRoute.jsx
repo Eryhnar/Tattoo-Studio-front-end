@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { Navigate, Route, useNavigate, Outlet } from 'react-router-dom';
 import { TokenContext } from '../../App';
 
-export const SecureRoute = ({ childElement, protMode }) => {
+export const SecureRoute = ({ protMode }) => {
     const { token, setToken } = React.useContext(TokenContext);
     const navigate = useNavigate();
     

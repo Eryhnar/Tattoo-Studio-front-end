@@ -187,33 +187,55 @@ export const Appointments = () => {
                                         <div className="appointment-header">
                                             {"Service: " + appointment.service.name}
                                         </div>
-                                        <div className="edit-delete">
-                                            <CButton
-                                                className="edit-appointment"
-                                                title={<span class="material-symbols-outlined">edit</span>}
-                                                onClickFunction={() => {}}
-                                            />
-                                            <CButton
-                                                className="delete-appointment"
-                                                title={<span class="material-symbols-outlined">delete</span>}
-                                                onClickFunction={() => {}}
-                                            />
-                                        </div>
-                
-                                        <p>Artist: {appointment.artist.name}</p>
-                                        {/* <p>Service: {appointment.service.name}</p> */}
-                                        {appointment.catalogue &&
-                                            <div className="appointment-content-catalogue">
-                                                <p>Catalogue: {appointment.catalogue.name}</p>
-                                                <p>Price: {appointment.catalogue.price}</p>
-                                                <div className="appointment-img">
-                                                    <img src={appointment.catalogue.afterImage} alt="catalogue" />
-                                                </div>
+                                        <div className="appointment-body">
+                                        
+                                            <div className="edit-delete">
+                                                <CButton
+                                                    className="edit-appointment"
+                                                    title={<span class="material-symbols-outlined">edit</span>}
+                                                    onClickFunction={() => {}}
+                                                />
+                                                <CButton
+                                                    className="delete-appointment"
+                                                    title={<span class="material-symbols-outlined">delete</span>}
+                                                    onClickFunction={() => {}}
+                                                />
                                             </div>
-                                        }
-                                        <p>Date: {date}</p>
-                                        <p>Time: {time}</p>
-                                        {/* <p>Status: {appointment.status}</p> */}
+                    
+                                            {/* <p>Artist: {appointment.artist.name}</p>
+                                            <p>Date: {date}</p>
+                                            <p>Time: {time}</p>
+                                            {appointment.catalogue &&
+                                                <div className="appointment-content-catalogue">
+                                                    <p>Catalogue: {appointment.catalogue.name}</p>
+                                                    <p>Price: {appointment.catalogue.price}</p>
+                                                    <div className="appointment-img">
+                                                        <img src={appointment.catalogue.afterImage} alt="catalogue" />
+                                                    </div>
+                                                </div>
+                                            } */}
+                                            <div className="appointment-container">
+                                                <div className="appointment-text">
+                                                    <p>Artist: {appointment.artist.name}</p>
+                                                    {/* <p>Service: {appointment.service.name}</p> */}
+                                                    <p>Date: {date}</p>
+                                                    <p>Time: {time}</p>
+                                                    {appointment.catalogue &&
+                                                        <div className="appointment-content-catalogue">
+                                                            <p>Catalogue: {appointment.catalogue.name}</p>
+                                                            <p>Price: {appointment.catalogue.price}</p>
+                                                        </div>
+                                                    }
+                                                </div>
+                                                    <div className="appointment-img">
+                                                        {appointment.catalogue ?
+                                                            <img src={appointment.catalogue.afterImage} alt="catalogue" />
+                                                            : "picture not available"
+                                                        }
+                                                    </div>
+                                                </div>
+                                            {/* <p>Status: {appointment.status}</p> */}
+                                        </div>
                                     </div>
                                 }
                                 image= {""}
