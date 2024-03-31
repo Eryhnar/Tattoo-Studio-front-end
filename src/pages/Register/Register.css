@@ -1,113 +1,113 @@
 .register-design {
-  --title-color: rgb(207, 139, 13);
-  --accent-color: rgb(113, 113, 113);
-  --dark-color: rgb(35, 36, 37);
+    --title-color: rgb(207, 139, 13);
+    --accent-color: rgb(113, 113, 113);
+    --dark-color: rgb(35, 36, 37);
 
-  display: flex;
-  /* flex-direction: column; */
-  justify-content: center;
-  align-items: center;
-  min-height: 90svh;
-  background-color: var(--accent-color);
+    display: flex;
+    /* flex-direction: column; */
+    justify-content: center;
+    align-items: center;
+    min-height: 90svh;
+    background-color: var(--accent-color);
 }
 
 .register-card {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 
-  min-height: 90svh;
-  max-width: 40em;
-  flex-grow: 1;
+    min-height: 90svh;
+    max-width: 40em;
+    flex-grow: 1;
 
-  background-color: var(--dark-color);
-  color: white;
+    background-color: var(--dark-color);
+    color: white;
 }
 
 .name-field {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  position: relative;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    position: relative;
 }
 
 .name-field p {
-  position: absolute;
-  right: calc(50% + 6em); 
-  text-align: right;
+    position: absolute;
+    right: calc(50% + 6em);
+    text-align: right;
 }
 
 .surname-field {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  position: relative;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    position: relative;
 }
 
 .surname-field p {
-  position: absolute;
-  right: calc(50% + 6em); 
-  text-align: right;
+    position: absolute;
+    right: calc(50% + 6em);
+    text-align: right;
 }
 
 .email-field {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  position: relative;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    position: relative;
 }
 
 .email-field p {
-  position: absolute;
-  right: calc(50% + 6em); 
-  text-align: right;
+    position: absolute;
+    right: calc(50% + 6em);
+    text-align: right;
 }
 
 .password-field {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  position: relative;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    position: relative;
 }
 
 .password-field p {
-  position: absolute;
-  right: calc(50% + 6em); 
-  text-align: right;
+    position: absolute;
+    right: calc(50% + 6em);
+    text-align: right;
 }
 
 .register-inputs {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 .register-input {
-  margin-block: 1em;
-  border-radius: 1em;
+    margin-block: 1em;
+    border-radius: 1em;
 
-  background-color: var(--accent-color);
+    background-color: var(--accent-color);
 
-  color: white;
-  text-align: center;
+    color: white;
+    text-align: center;
 }
 
 .register-button {
-  background-color: var(--accent-color);
-  padding-inline: 1rem;
-  padding-block: 0.25rem;
-  border-radius: 1rem;
-  box-shadow: 0rem 0.3rem 1rem black;
-  border: white 0.1rem solid;
+    background-color: var(--accent-color);
+    padding-inline: 1rem;
+    padding-block: 0.25rem;
+    border-radius: 1rem;
+    box-shadow: 0rem 0.3rem 1rem black;
+    border: white 0.1rem solid;
 
-  margin-block: 1em;
+    margin-block: 1em;
 
-  cursor: pointer;
-  user-select: none;
+    cursor: pointer;
+    user-select: none;
 }
