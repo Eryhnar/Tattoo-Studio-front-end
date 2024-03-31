@@ -94,17 +94,17 @@ export const Appointments = () => {
             <div className="body-content">
                 <div className="appointment-status-selectors">
                     <CButton
-                        className={`appointment-status-selector ${status === 'pending' ? 'active' : ''}`}
+                        className={`appointment-status-selector ${status === 'pending' ? 'active-filter' : ''}`}
                         title="Pending"
                         onClickFunction={() => setStatus("pending")}
                     />
                     <CButton
-                        className={`appointment-status-selector ${status === 'done' ? 'active' : ''}`}
+                        className={`appointment-status-selector ${status === 'done' ? 'active-filter' : ''}`}
                         title="Done"
                         onClickFunction={() => setStatus("done")}
                     />
                     <CButton
-                        className={`appointment-status-selector ${status === 'cancelled' ? 'active' : ''}`}
+                        className={`appointment-status-selector ${status === 'cancelled' ? 'active-filter' : ''}`}
                         title="Cancelled"
                         onClickFunction={() => setStatus("cancelled")}
                     />
@@ -165,7 +165,7 @@ export const Appointments = () => {
                     />
                     : <CButton
                         className="new-appointment-button"
-                        title="+"
+                        title={<span class="material-symbols-outlined">add</span>}
                         onClickFunction={() => setOpenNew(true)}
                     />
                 }
