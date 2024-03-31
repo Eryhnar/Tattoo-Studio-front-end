@@ -235,16 +235,12 @@ export const Appointments = () => {
                                         <div className="edit-delete">
                                             <CButton
                                                 className="edit-appointment"
-                                                title={<span class="material-symbols-outlined">
-                                                edit
-                                                </span>}
+                                                title={<span class="material-symbols-outlined">edit</span>}
                                                 onClickFunction={() => {}}
                                             />
                                             <CButton
                                                 className="delete-appointment"
-                                                title={<span class="material-symbols-outlined">
-                                                delete
-                                                </span>}
+                                                title={<span class="material-symbols-outlined">delete</span>}
                                                 onClickFunction={() => {}}
                                             />
                                         </div>

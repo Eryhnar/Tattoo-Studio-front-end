@@ -24,17 +24,11 @@ export const Services = () => {
 
     return (
         <div className="services-design">
-            <div className="services-banner">
                 <h1>Services</h1>
-            </div>
+            <div className="services-banner"></div>
             {/* <p>Check out our services!</p> */}
             <div className="services">
                 {services.map((service, index) => (
-                    // <div key={index} className="service">
-                    //     <h2>{service.name}</h2>
-                    //     <p>{service.description}</p>
-                    //     <p>{service.price}</p>
-                    // </div>
                     <CCard 
                         className= {"service"}
                         title= {service.name}

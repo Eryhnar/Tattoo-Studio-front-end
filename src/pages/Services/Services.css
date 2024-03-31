@@ -10,16 +10,26 @@
     background-color: var(--accent-color);
 
     min-height: 90svh;
+    color: white;
 }
 
-.services-design {
-    color: white;
+.services-banner {
+    min-height: 30svh;
+    width: 100%;
+
+    background-image: url("https://imgur.com/Pn9dmCz.png");
+    background-size: cover;
+
+    background-size: 0.5;
+    background-position-y: 20%;
 }
 
 .services-design h1 {
     color: var(--title-color);
     font-size: 5rem;
     font-family: Dancing Script, cursive;
+    margin: 0;
+    padding: 0;
 }
 
 .services {
