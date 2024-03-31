@@ -8,24 +8,24 @@ export const Home = () => {
     const [artists, setArtists] = useState([]);
     const [catalogues, setCatalogues] = useState([]);
 
-    useEffect(() => {
-        const fetchServices = async () => {
-            const response = await GetServicesService();
-            const data = response.data;
-            setServices(data);
+    // useEffect(() => {
+    //     const fetchServices = async () => {
+    //         const response = await GetServicesService();
+    //         const data = response.data;
+    //         setServices(data);
 
-            setTimeout(() => {
-                console.log("response",response);
-                console.log("data",data);
-                console.log("services",services);
-            }, 2000);
-        };
-        if (services.length === 0) {
-            fetchServices();
-        }
+    //         setTimeout(() => {
+    //             console.log("response",response);
+    //             console.log("data",data);
+    //             console.log("services",services);
+    //         }, 2000);
+    //     };
+    //     if (services.length === 0) {
+    //         fetchServices();
+    //     }
 
         
-    }, []);
+    // }, []);
     
     return (
         // <div className="viewDesign">

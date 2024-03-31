@@ -32,11 +32,25 @@ export const Header = () => {
                 >
                     Services
                 </NavLink>
+                <NavLink
+                    to="/catalogue"
+                    className={"nav-button-design"}
+                >
+                    Catalogue
+                </NavLink>
                 {/* <NavButton title="Services" path="/services" /> */}
             </div>
             <div className="header-right">
                 {token ? (
                     <>
+                        {token.roleName.includes("admin") ? (
+                            <NavLink
+                                to="/admin"
+                                className={"nav-button-design"}
+                            >
+                                Admin
+                            </NavLink>
+                        ) : null}
                         <NavLink
                             to="/appointments"
                             className={"nav-button-design"}

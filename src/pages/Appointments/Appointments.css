@@ -21,6 +21,7 @@
     align-items: center;
     justify-content: center;
 
+    min-height: 90svh;
     max-width: 40em;
     flex-grow: 1;
 
