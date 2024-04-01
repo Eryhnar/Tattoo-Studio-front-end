@@ -59,8 +59,7 @@ export const Admin = () => {
 
     const deleteFunction = async (item) => {
         const response = await DeleteUserByIdService(item, JSON.parse(localStorage.getItem("token")));
-        // setData()
-
+        setUsers(users.filter((user) => user.id !== item.id));
     }
 
     const getData = () => {
