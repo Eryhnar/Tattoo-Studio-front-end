@@ -1,6 +1,7 @@
 .appointmentsDesign {
     --title-color: rgb(207, 139, 13);
     --accent-color: rgb(113, 113, 113);
+    --secondary-accent-color: #ebc95b;
     --dark-color: rgb(35, 36, 37);
     --mid-range-color: #6c767f;
     --low-range-color: #d9d9d9;

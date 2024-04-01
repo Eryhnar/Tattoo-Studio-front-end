@@ -148,3 +148,42 @@ export const DeleteAppointmentService = async (id, token) => {
         throw error;
     }
 }
+
+export const GetUsersService = async (token) => {
+    try {
+        const response = await fetch(root + "users", {
+            method: "GET",
+            headers: {
+                Authorization: `Bearer ${token}`,
+            },
+        });
+        return response.json();
+    } catch (error) {
+        throw error;
+    }
+}
+
+export const GetAllAppointmentsService = async (token) => {
+    try {
+        const response = await fetch(root + "appointments", {
+            method: "GET",
+            headers: {
+                Authorization: `Bearer ${token}`,
+            },
+        });
+        return response.json();
+    } catch (error) {
+        throw error;
+    }
+}
+
+export const GetCatalogueService = async () => {
+    try {
+        const response = await fetch(root + "catalogue", {
+            method: "GET",
+        });
+        return response.json();
+    } catch (error) {
+        throw error;
+    }
+}

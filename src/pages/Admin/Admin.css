@@ -1,7 +1,10 @@
 .admin-design {
     --title-color: rgb(207, 139, 13);
     --accent-color: rgb(113, 113, 113);
+    --secondary-accent-color: #ebc95b;
     --dark-color: rgb(35, 36, 37);
+    --mid-range-color: #6c767f;
+    --low-range-color: #d9d9d9;
 
     display: flex;
     justify-content: center;
@@ -17,8 +20,28 @@
     flex-grow: 1;
 }
 
+.admin-header {
+    background-color: var(--secondary-accent-color);
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-direction: row;
+    min-height: 2rem;
+}
+
+.admin-header-button {
+    color: var(--dark-color);
+    padding-block: 0.5em;
+    padding-inline: 1em;
+}
+
+.admin-header-button:hover {
+    cursor: pointer;
+    background-color: var(--dark-color);
+    color: var(--secondary-accent-color);
+}
+
 @media (min-width: 1080px) {
-    
     .admin-body {
         max-width: 80vw;
     }
