@@ -1,0 +1,169 @@
+.profile-design {
+    --title-color: rgb(207, 139, 13);
+    --accent-color: rgb(113, 113, 113);
+    --dark-color: rgb(35, 36, 37);
+
+    display: flex;
+    justify-content: center;
+    /* align-items: flex-start; */
+    /* min-height: 90svh; */
+    /* height: 90svh; */
+    
+    background-color: var(--accent-color);
+}
+
+.profile-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+
+    min-height: 90svh;
+    flex-grow: 1;
+
+    background-color: var(--dark-color);
+    color: white;
+}
+
+.profile-card h2 {
+    margin-block: 1rem;
+    margin-bottom: 3rem;
+
+    color: var(--title-color);
+    font-size: 3rem;
+}
+
+.name-field {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.name-field p {
+    position: absolute;
+    right: calc(50% + 6em); 
+    text-align: right;
+}
+
+.surname-field {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.surname-field p {
+    position: absolute;
+    right: calc(50% + 6em); 
+    text-align: right;
+}
+
+.email-field {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.email-field p {
+    position: absolute;
+    right: calc(50% + 6em); 
+    text-align: right;
+}
+
+.edit-icon {
+    position: absolute;
+    width: 1.5em;
+    height: 1.5em;
+    border-radius: 25%;
+    
+    background-color: var(--accent-color);
+    color: var(--dark-color);
+
+    cursor: pointer;
+}
+
+.edit-fields {
+    position: absolute;
+    left: calc(50% + 6em); 
+    top: calc(25%);
+    width: 1em;
+    height: 1em;
+}
+
+.save-icon {
+    position: absolute;
+    width: 1.5em;
+    height: 1.5em;
+    border-radius: 25%;
+    
+    background-color: green;
+
+    cursor: pointer;
+}
+
+.cancel-icon {
+    position: absolute;
+    left: 2em;
+    width: 1.5em;
+    height: 1.5em;
+    border-radius: 25%;
+    
+    background-color: red;
+
+    cursor: pointer;
+}
+
+.profile-inputs {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    /* margin-block: 5em; */
+}
+
+.profile-input {
+    margin-block: 1em;
+    border-radius: 1em;
+
+    background-color: var(--accent-color);
+
+    color: white;
+    text-align: center;
+
+}
+
+.profile-input:disabled {
+    background-color: transparent;
+    border: none;
+}
+
+.change-password-button {
+    background-color: var(--accent-color);
+    padding-inline: 1rem;
+    padding-block: 0.25rem;
+    border-radius: 1rem;
+    box-shadow: 0rem 0.3rem 1rem black;
+    border: white 0.1rem solid;
+
+    margin-block: 1em;
+
+    cursor: pointer;
+    user-select: none;
+}
+
+.change-password-button:active {
+    background-color: rgb(202, 202, 202);
+    transform: translateY(0.3rem);
+}
+
+@media (min-width: 1080px) {
+    .profile-card {
+        max-width: 80vw;
+    }
+}

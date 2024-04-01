@@ -1,0 +1,11 @@
+.loginButton, .registerButton {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background-color: burlywood;
+    /* font-weight: bold; */
+
+    padding-inline: 0.5em;
+    padding-block: 0.25em;
+}
