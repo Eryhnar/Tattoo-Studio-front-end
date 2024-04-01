@@ -91,6 +91,7 @@ comming soon
 ## Decisions
 
 - I decided to simplify the design and features vs the capabilities of the back-end given that the extra features would have taken time that right now is better spent researching for other project like the final project.
+- I also decided not to use libraries. All elements and date formatting were done manually to reduce both dependencies and weight, and to get some practice with custom elements.
 
 ## Roadmap
 - Add Input validations
