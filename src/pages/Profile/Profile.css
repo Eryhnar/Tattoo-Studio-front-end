@@ -5,8 +5,10 @@
 
     display: flex;
     justify-content: center;
-    align-items: center;
-    min-height: 90svh;
+    /* align-items: flex-start; */
+    /* min-height: 90svh; */
+    /* height: 90svh; */
+    
     background-color: var(--accent-color);
 }
 
@@ -121,6 +123,8 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+
+    /* margin-block: 5em; */
 }
 
 .profile-input {

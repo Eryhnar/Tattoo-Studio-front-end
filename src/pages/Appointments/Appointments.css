@@ -25,6 +25,7 @@
 
     min-height: 90svh;
     flex-grow: 1;
+    padding-inline: 1rem;
 
     background-color: var(--dark-color);
 }
