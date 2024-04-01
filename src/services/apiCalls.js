@@ -115,3 +115,36 @@ export const GetArtistsService = async () => {
         throw error;
     }
 }
+
+export const UpdateAppointmentService = async (appointment, token) => {
+    const { id, ...rest } = appointment;
+    try {
+        const response = await fetch(root + `appointments/${id}`, {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${token}`,
+            },
+            body: JSON.stringify(rest),
+        });
+
+        return response.json();
+    } catch (error) {
+        throw error;
+    }
+}
+
+export const DeleteAppointmentService = async (id, token) => {
+    try {
+        const response = await fetch(root + `appointments/${id}/cancel`, {
+            method: "PUT",
+            headers: {
+                Authorization: `Bearer ${token}`,
+            },
+        });
+
+        return response.json();
+    } catch (error) {
+        throw error;
+    }
+}

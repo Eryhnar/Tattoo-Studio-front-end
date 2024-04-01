@@ -1,7 +1,12 @@
+import "./Admin.css";
+
 export const Admin = () => {
     return (
-        <div>
-            Admin
+        <div className="admin-design">
+            <div className="admin-body">
+                
+                Admin
+            </div>
         </div>
     )
 }

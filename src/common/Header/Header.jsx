@@ -68,8 +68,8 @@ export const Header = () => {
                 {/* <NavButton title="Services" path="/services" /> */}
             </div>
             <div className="burger-button" onClick={toggleMenu}>{menuOpen 
-                ? <span class="material-symbols-outlined">menu_open</span> 
-                : <span class="material-symbols-outlined">
+                ? <span className="material-symbols-outlined">menu_open</span> 
+                : <span className="material-symbols-outlined">
                 menu
                 </span>}</div>
             <div className={`burger-menu ${menuOpen ? "" : "burger-menu-hidden"}`}>

@@ -1,13 +1,11 @@
 import { useEffect, useState, useContext } from "react";
 import "./Appointments.css";
-import { CreateAppointmentService, GetAppointmentsService } from "../../services/apiCalls";
 import { CCard } from "../../common/CCard/CCard";
 import { CInput } from "../../common/CInput/CInput";
 import { CDropdown } from "../../common/CDropdown/CDropdown";
 import { CButton } from "../../common/CButton/CButton";
 import { TokenContext } from "../../App";
-import { GetServicesService } from "../../services/apiCalls";
-import { GetArtistsService } from "../../services/apiCalls";
+import { GetServicesService, GetArtistsService, UpdateAppointmentService, DeleteAppointmentService, CreateAppointmentService, GetAppointmentsService } from "../../services/apiCalls";
 
 export const Appointments = () => {
     const { token, setToken } = useContext(TokenContext);
@@ -26,6 +24,17 @@ export const Appointments = () => {
 
     const [services, setServices] = useState([]);
     const [artists, setArtists] = useState([]);
+
+    const [appointmentToEdit, setAppointmentToEdit] = useState(null);
+    const [isOpenEdit, setIsOpenEdit] = useState(false);
+
+    const [editAppointment, setEditAppointment] = useState({
+        id: "",
+        artistId: "",
+        serviceId: "",
+        date: "",
+    });
+    // const [editWrite, setEditWrite] = useState("disabled");
 
     useEffect(() => {
         const getAppointments = async () => {
@@ -53,13 +62,16 @@ export const Appointments = () => {
             const response = await GetArtistsService();
             setArtists(response.data);
         };
-        if (openNew && services.length === 0) {
-            fetchServices();
+    
+        if (openNew || isOpenEdit) {
+            if (services.length === 0) {
+                fetchServices();
+            }
+            if (artists.length === 0) {
+                fetchArtists();
+            }
         }
-        if (openNew && artists.length === 0) {
-            fetchArtists();
-        }
-    }, [openNew]);
+    }, [openNew, isOpenEdit]);
 
     const inputHandler = (e) => {
         let value = e.target.value;
@@ -72,6 +84,17 @@ export const Appointments = () => {
             ...prevState,
             [e.target.name]: value,
         }));
+    };
+
+    const editInputHandler = (e) => {
+        console.log("e.target.value", e.target.value);
+        setEditAppointment((prevState) => ({
+            ...prevState,
+            [e.target.name]: e.target.value,
+        }));
+        // setTimeout(() => {
+        //     console.log("editAppointment", editAppointment);
+        // }, 1000);
     };
 
     const toggleCardVisibility = (e) => {
@@ -95,8 +118,98 @@ export const Appointments = () => {
         }
     }
 
+    const startEditingAppointment = (appointment) => {
+        console.log("appointment", appointment);
+        console.log("appointment.service.id", appointment.service.id);
+        setEditAppointment({
+            id: appointment.id,
+            artistId: appointment.artist.id,
+            serviceId: appointment.service.id,
+            date: appointment.date,
+        })
+        setIsOpenEdit(true);
+
+        // setTimeout(() => {
+        //     console.log("editAppointment", editAppointment);
+        // }, 5000);
+    }
+    // console.log("editAppointment", editAppointment);
+
+    const updateAppointment = async (updatedAppointment) => { //TODO change with hook
+        try {
+            const response = await UpdateAppointmentService(updatedAppointment, JSON.parse(localStorage.getItem("token")));
+            // setAppointments(appointments => {
+            //     return appointments.map(appointment => 
+            //         appointment.id === updatedAppointment.id ? updatedAppointment : appointment
+            //     );
+            // });
+            setIsOpenEdit(false);
+        } catch (error) {
+            console.log(error);
+            //set error
+        }
+    };
+
+    const deleteAppointment = async (id) => {
+        try {
+            const response = await DeleteAppointmentService(id, JSON.parse(localStorage.getItem("token")));
+            setAppointments(appointments.filter(appointment => appointment.id !== id));
+            appointments.filter(appointment => appointment.id !== id);
+        } catch (error) {
+            console.log(error);
+            //set error
+        }
+    }
+
     return (
         <div className="appointmentsDesign">
+            {isOpenEdit && (
+                <CCard
+                    className={"edit-popup"}
+                    title={""}
+                    content={
+                        <div className="edit-popup-content">
+                            <CDropdown
+                                buttonClass="artist-selector"
+                                dropdownClass="artist-dropdown"
+                                title="artistId"
+                                items={artists}
+                                onChangeFunction={(e) => { editInputHandler(e) }}
+                            />
+                            <CDropdown
+                                buttonClass="service-selector"
+                                dropdownClass="service-dropdown"
+                                title="serviceId"
+                                items={services}
+                                onChangeFunction={(e) => { editInputHandler(e) }}
+                            />
+                            <CInput
+                                className={"date-time"}
+                                type="datetime-local"
+                                placeholder="Date"
+                                name="date"
+                                disabled=""
+                                value={editAppointment.date || ""}
+                                onChangeFunction={(e) => { editInputHandler(e) }}
+                                min={new Date().toISOString().slice(0, 16)}
+                            />
+                            <div className="edit-appointment-buttons">
+                                <CButton
+                                    className="edit-appointment-save"
+                                    title="Save"
+                                    onClickFunction={() => updateAppointment(editAppointment)}
+                                />
+                                <CButton
+                                    className="edit-appointment-cancel"
+                                    title="Cancel"
+                                    onClickFunction={() => setIsOpenEdit(false)}
+                                />
+                            </div>
+                        </div>
+                    }
+                    image={""}
+                />
+            )}
             <div className="body-content">
                 <div className="appointment-status-selectors">
                     <CButton
@@ -143,6 +256,7 @@ export const Appointments = () => {
                                     disabled=""
                                     value={date || ""}
                                     onChangeFunction={(e) => { inputHandler(e) }}
+                                    min={new Date().toISOString().slice(0, 16)}
                                 />
                                 <div className="create-appointment-buttons">
                                     <CButton
@@ -196,15 +310,43 @@ export const Appointments = () => {
                                         <div className="appointment-body appointment-body-hidden">
 
                                             <div className="edit-delete">
+                                                {/* {editWrite === "disabled" 
+                                                    ? 
+                                                    <>
+                                                        <CButton
+                                                            className="edit-appointment"
+                                                            title={<span className="material-symbols-outlined">edit</span>}
+                                                            onClickFunction={() => setEditWrite(editWrite === "disabled" ? "" : "disabled")}
+                                                        />
+                                                        <CButton
+                                                            className="delete-appointment"
+                                                            title={<span className="material-symbols-outlined">delete</span>}
+                                                            onClickFunction={() => { }}
+                                                        />
+                                                    </>
+                                                    :
+                                                    <>
+                                                        <CButton
+                                                            className="save-appointment"
+                                                            title={<span className="material-symbols-outlined">done</span>}
+                                                            onClickFunction={updateAppointment}
+                                                        />
+                                                        <CButton
+                                                            className="cancel-appointment"
+                                                            title={<span className="material-symbols-outlined">close</span>}
+                                                            onClickFunction={() => setEditWrite(editWrite === "disabled" ? "" : "disabled")}
+                                                        />
+                                                    </>
+                                                } */}
                                                 <CButton
                                                     className="edit-appointment"
                                                     title={<span className="material-symbols-outlined">edit</span>}
-                                                    onClickFunction={() => { }}
+                                                    onClickFunction={() => startEditingAppointment(appointment)}
                                                 />
                                                 <CButton
                                                     className="delete-appointment"
                                                     title={<span className="material-symbols-outlined">delete</span>}
-                                                    onClickFunction={() => { }}
+                                                    onClickFunction={() => { deleteAppointment(appointment.id) }}
                                                 />
                                             </div>
 
@@ -222,10 +364,38 @@ export const Appointments = () => {
                                             } */}
                                             <div className="appointment-container">
                                                 <div className="appointment-text">
-                                                    <p>Artist: {appointment.artist.name}</p>
+                                                {/* <CDropdown
+                                                    buttonClass="appointment-input"
+                                                    dropdownClass="artist-dropdown"
+                                                    title="artistId"
+                                                    items={artists}
+                                                    onChangeFunction={(e) => { editAppointmentHandler(e) }}
+                                                    disabled={editWrite}
+                                                /> */}
                                                     {/* <p>Service: {appointment.service.name}</p> */}
+                                                    <p>Artist: {appointment.artist.name}</p>
                                                     <p>Date: {date}</p>
+                                                    {/* <CInput
+                                                        className={"appointment-input"}
+                                                        type="date"
+                                                        placeholder="Date"
+                                                        name="date"
+                                                        disabled={editWrite}
+                                                        value={editAppointment.date || ""}
+                                                        onChangeFunction={(e) => { editAppointmentHandler(e) }}
+                                                        min={new Date().toISOString().slice(0, 16)}
+                                                    /> */}
                                                     <p>Time: {time}</p>
+                                                    {/* <CInput
+                                                        className={"appointment-input"}
+                                                        type="time"
+                                                        placeholder="Time"
+                                                        name="time"
+                                                        disabled={editWrite}
+                                                        value={editAppointment.time || ""}
+                                                        onChangeFunction={(e) => { editAppointmentHandler(e) }}
+                                                        min={new Date().toISOString().slice(0, 16)}
+                                                    /> */}
                                                     {appointment.catalogue &&
                                                         <div className="appointment-content-catalogue">
                                                             <p>Catalogue: {appointment.catalogue.name}</p>

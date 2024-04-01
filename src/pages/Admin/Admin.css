@@ -1,0 +1,25 @@
+.admin-design {
+    --title-color: rgb(207, 139, 13);
+    --accent-color: rgb(113, 113, 113);
+    --dark-color: rgb(35, 36, 37);
+
+    display: flex;
+    justify-content: center;
+    /* align-items: flex-start; */
+    /* min-height: 90svh; */
+    min-height: 90svh;
+    
+    background-color: var(--accent-color);
+}
+
+.admin-body {
+    background-color: var(--dark-color);
+    flex-grow: 1;
+}
+
+@media (min-width: 1080px) {
+    
+    .admin-body {
+        max-width: 80vw;
+    }
+}
