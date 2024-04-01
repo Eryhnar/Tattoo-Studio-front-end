@@ -27,15 +27,17 @@ export const Services = () => {
                 <h1>Services</h1>
             <div className="services-banner"></div>
             {/* <p>Check out our services!</p> */}
-            <div className="services">
-                {services.map((service, index) => (
-                    <CCard 
-                        className= {"service"}
-                        title= {service.name}
-                        content= {service.description}
-                        image= {service.image}
-                    />
-                ))}
+            <div className="services-body">
+                <div className="services">
+                    {services.map((service, index) => (
+                        <CCard
+                            className= {"service"}
+                            title= {service.name}
+                            content= {service.description}
+                            image= {service.image}
+                        />
+                    ))}
+                </div>
             </div>
         </div>
     );
