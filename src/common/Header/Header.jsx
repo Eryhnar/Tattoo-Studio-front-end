@@ -51,20 +51,20 @@ export const Header = () => {
                     Home
                 </NavLink>
                 {/* <NavButton title="Home" path="/" /> */}
-                <div className="hidden-nav">
+                {/* <div className="hidden-nav"> */}
                     <NavLink
                         to="/services"
-                        className={"nav-button-design"}
+                        className={"nav-button-design hidden-nav"}
                     >
                         Services
                     </NavLink>
                     <NavLink
                         to="/catalogue"
-                        className={"nav-button-design"}
+                        className={"nav-button-design hidden-nav"}
                     >
                         Catalogue
                     </NavLink>
-                </div>
+                {/* </div> */}
                 {/* <NavButton title="Services" path="/services" /> */}
             </div>
             <div className="burger-button" onClick={toggleMenu}>{menuOpen 
