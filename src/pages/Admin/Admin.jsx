@@ -54,12 +54,12 @@ export const Admin = () => {
 
     const editFunction = async (item) => {
         const response = await UpdateUserByIdService(item, JSON.parse(localStorage.getItem("token")));
-        setData()
+        // setData()
     }
 
     const deleteFunction = async (item) => {
         const response = await DeleteUserByIdService(item, JSON.parse(localStorage.getItem("token")));
-        setData()
+        // setData()
 
     }
 

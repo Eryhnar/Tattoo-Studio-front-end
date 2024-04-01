@@ -19,6 +19,7 @@
 .admin-body {
     background-color: var(--dark-color);
     flex-grow: 1;
+    max-width: 100vw;
 }
 
 .admin-header {
@@ -46,7 +47,7 @@
     display: flex;
     flex-direction: column;
     /* font-size: 0.7em; */
-    /* overflow: scroll; */
+    overflow-x: auto;
 }
 
 .admin-table-users {
@@ -85,12 +86,14 @@
 .admin-table-row-item {
     border: 0.1rem solid black;
     padding-block: 0.5rem;
+    padding-inline: 0.5rem;
 }
 
 .admin-table-button {
     border: 0.1rem solid black;
     padding-block: 0.5rem;
     background-color: var(--secondary-accent-color);
+    padding-inline: 0.5rem;
     /* margin: 1rem; */
     /* box-shadow: inset 0 0 0 1rem black; */
 }
@@ -98,5 +101,12 @@
 @media (min-width: 1080px) {
     .admin-body {
         max-width: 80vw;
+    }
+}
+
+@media (max-width: 1080px) {
+    .admin-design,
+    .admin-body {
+        background-color: transparent;
     }
 }
