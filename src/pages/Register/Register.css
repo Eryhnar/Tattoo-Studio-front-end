@@ -1,4 +1,4 @@
-.login-design {
+.register-design {
     --title-color: rgb(207, 139, 13);
     --accent-color: rgb(113, 113, 113);
     --dark-color: rgb(35, 36, 37);
@@ -7,10 +7,11 @@
     justify-content: center;
     align-items: center;
     min-height: 90svh;
+    
     background-color: var(--accent-color);
 }
-  
-.login-card {
+
+.register-card {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -23,6 +24,34 @@
     color: white;
 }
 
+.name-field {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.name-field p {
+    position: absolute;
+    right: calc(50% + 6em);
+    text-align: right;
+}
+
+.surname-field {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.surname-field p {
+    position: absolute;
+    right: calc(50% + 6em);
+    text-align: right;
+}
+
 .email-field {
     display: flex;
     flex-direction: row;
@@ -33,7 +62,7 @@
 
 .email-field p {
     position: absolute;
-    right: calc(50% + 6em); 
+    right: calc(50% + 6em);
     text-align: right;
 }
 
@@ -47,18 +76,18 @@
 
 .password-field p {
     position: absolute;
-    right: calc(50% + 6em); 
+    right: calc(50% + 6em);
     text-align: right;
 }
 
-.login-inputs {
+.register-inputs {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 }
 
-.login-input {
+.register-input {
     margin-block: 1em;
     border-radius: 1em;
 
@@ -68,7 +97,7 @@
     text-align: center;
 }
 
-.login-button {
+.register-button {
     background-color: var(--accent-color);
     padding-inline: 1rem;
     padding-block: 0.25rem;
@@ -83,7 +112,7 @@
 }
 
 @media (min-width: 1080px) {
-    .login-card {
+    .register-card {
         max-width: 80vw;
     }
 }

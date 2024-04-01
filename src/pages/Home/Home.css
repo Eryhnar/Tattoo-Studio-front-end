@@ -1,18 +1,141 @@
-.homeDesign{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100svh;
-    /* width: 100%;  */
-    flex-grow: 1;
-    background-color: purple;
+/* <weight>: Use a value from 400 to 700 */
+
+.dancing-script-cursive {
+    font-family: "Dancing Script", cursive;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
 }
 
-/* .viewDesign{
+.homeDesign{
+    --title-color: rgb(207, 139, 13);
+    --accent-color: rgb(113, 113, 113);
+    --dark-color: rgb(35, 36, 37);
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    min-height: 90svh;
+
+    background-color: var(--accent-color);
+}
+
+.home-main-banner {
+    position: relative;
+    width: 100%;
+    min-height: 75svh;
+    overflow: hidden; 
+}
+
+.home-main-banner::before {
+    content: "";
+    position: absolute;
+    top: -10%; 
+    right: -10%;
+    bottom: -10%;
+    left: -10%;
+    background-image: url('https://i.imgur.com/e7jcieX.jpeg');
+    background-size: cover;
+    background-position-y: 35%;
+    filter: blur(5px);
+}
+
+.home-main-banner-text {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    color: black;
+    text-align: center;
+    font-family: Dancing Script, cursive;
+    font-size: 2rem;
+
+}
+
+.home-article-left,
+.home-article-right {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+
+    margin-block: 2em;
+}
+
+.home-article-grid {
+
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(20em, 1fr));
+    gap: 1em;
+
+    margin-block: 2em;
+
+    background-color: var(--dark-color);
+}
+
+.home-article-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    padding: 1em;
+
+    color: white;
+}
+
+.home-article-text h2 {
+    color: var(--title-color);
+}
+
+.home-article-image-container {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 100%; 
-    flex-direction: column;
-    background-color: lightseagreen;
+}
+
+img {
+    max-width: 20em;
+    display: block;
+}
+
+.home-map-container {
+    max-width: 30em;
+    max-height: 10em;
+    height: 0;
+    margin-block: 2em;
+    margin-inline: auto;
+
+    position: relative;
+    padding-bottom: 75%;
+}
+
+@media screen and (min-width: 700px) {
+    .home-map-container {
+      padding-bottom: 50%; 
+    }
+}
+@media screen and (min-width: 1200px) {
+    .home-map-container {
+      padding-bottom: 30%; 
+    }
+}
+
+
+.home-map-container iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+/* .home-where iframe{
+    margin-block: 2em;
 } */
