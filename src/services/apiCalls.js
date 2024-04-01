@@ -219,3 +219,20 @@ export const DeleteUserByIdService = async (user, token) => {
         throw error;
     }
 }
+
+export const UpdateProfilePasswordService = async (passwords, token) => {
+    try {
+        const response = await fetch(root + "users/profile/password", {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${token}`,
+            },
+            body: JSON.stringify(passwords),
+        });
+
+        return response.json();
+    } catch (error) {
+        throw error;
+    }
+}
