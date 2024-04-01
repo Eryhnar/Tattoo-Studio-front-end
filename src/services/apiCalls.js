@@ -204,3 +204,18 @@ export const UpdateUserByIdService = async (user, token) => {
         throw error;
     }
 }
+
+export const DeleteUserByIdService = async (user, token) => {
+    try {
+        const response = await fetch(root + `users/${user.id}`, {
+            method: "DELETE",
+            headers: {
+                Authorization: `Bearer ${token}`,
+            },
+        });
+
+        return response.json();
+    } catch (error) {
+        throw error;
+    }
+}

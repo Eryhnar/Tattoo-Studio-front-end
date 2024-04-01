@@ -1,7 +1,7 @@
 import { CButton } from "../../common/CButton/CButton";
 import "./Admin.css";
 import { useState } from "react";
-import { GetUsersService, GetServicesService, GetCatalogueService, GetAllAppointmentsService, UpdateUserByIdService } from "../../services/apiCalls";
+import { GetUsersService, GetServicesService, GetCatalogueService, GetAllAppointmentsService, UpdateUserByIdService, DeleteUserByIdService } from "../../services/apiCalls";
 import { CTable } from "../../common/CTable/CTable";
 
 export const Admin = () => {
@@ -9,7 +9,7 @@ export const Admin = () => {
     const [services, setServices] = useState([]);
     const [catalogue, setCatalogue] = useState([]);
     const [appointments, setAppointments] = useState([]);
-    const [data, setData] = useState({});
+    const [data, setData] = useState([]);
     const [filter, setFilter] = useState("");
 
     const fetchUsers = async (token) => {
@@ -57,6 +57,12 @@ export const Admin = () => {
         setData()
     }
 
+    const deleteFunction = async (item) => {
+        const response = await DeleteUserByIdService(item, JSON.parse(localStorage.getItem("token")));
+        setData()
+
+    }
+
     const getData = () => {
         switch(filter) {
             case "users":
@@ -98,16 +104,59 @@ console.log("users", users, "services" ,services, "catalogue", catalogue, "appoi
                         onClickFunction={() => fetchAppointments(JSON.parse(localStorage.getItem("token")))}
                     />
                 </div>
-                <CTable
+                {/* <AdminUsers
+                    deleteFunction={deleteFunction}
+                    editFunction={editFunction}
+                    data={getData()}
+                /> */}
+                {/* <CTable
                     className={"admin-table"}
                     data={getData()}
                     editFunction={editFunction}
-                    deleteFunction={() => {}}
-                />
+                    deleteFunction={() => deleteFunction()}
+                /> */}
                 
-
-                Admin
-            </div>
+                {(getData().length !== 0) && 
+                    <>
+                        {/* <div className={`admin-table-${filter}`}> */}
+                        <div className="admin-table">
+                        <div className="admin-table-users">
+    {Object.keys(getData()[0]).map((key) => (
+        <div key={key} className="admin-table-header-title">
+            {key}
         </div>
+    ))}
+    <div className="admin-table-header-title">Edit</div>
+    <div className="admin-table-header-title">Delete</div>
+    {getData().map((item, index) => (
+        <>
+            {Object.keys(item).map((key) => (
+                <div key={key} className="admin-table-row-item">
+                    {item[key]}
+                </div>
+            ))}
+            {/* <div className="admin-table-button-container"> */}
+                <CButton
+                    className={"admin-table-button"}
+                    title={"Edit"}
+                    onClickFunction={() => editFunction(item)}
+                />
+                <CButton
+                    className={"admin-table-button"}
+                    title={"Delete"}
+                    onClickFunction={() => deleteFunction(item)}
+                />
+            {/* </div> */}
+        </>
+    ))}
+</div>
+                        </div>
+                    </>
+                }
+            
+
+            {/* Admin */}
+        </div>
+    </div>
     )
 }

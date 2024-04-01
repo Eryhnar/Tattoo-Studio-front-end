@@ -13,6 +13,7 @@
     min-height: 90svh;
     
     background-color: var(--accent-color);
+    /* font-size: 0.8rem; */
 }
 
 .admin-body {
@@ -31,14 +32,67 @@
 
 .admin-header-button {
     color: var(--dark-color);
-    padding-block: 0.5em;
-    padding-inline: 1em;
+    padding-block: 0.5rem;
+    padding-inline: 1rem;
 }
 
 .admin-header-button:hover {
     cursor: pointer;
     background-color: var(--dark-color);
     color: var(--secondary-accent-color);
+}
+
+.admin-table {
+    display: flex;
+    flex-direction: column;
+    /* font-size: 0.7em; */
+    /* overflow: scroll; */
+}
+
+.admin-table-users {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    background-color: white;
+}
+
+.admin-table-header {
+    /* display: flex;
+    flex-direction: row;
+    justify-content: space-evenly; */
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    background-color: var(--low-range-color);
+    /* margin-right: 30rem; */
+}
+
+.admin-table-header-title {
+    border: 0.1rem solid black;
+    padding-block: 0.5rem;
+    box-shadow: 
+        -2px -2px 0px #fff, 
+        -1px -1px 0px #fff, 
+        1px 1px 0px #808080, 
+        2px 2px 0px #808080;
+
+}
+
+.admin-table-row {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    background-color: violet;
+}
+
+.admin-table-row-item {
+    border: 0.1rem solid black;
+    padding-block: 0.5rem;
+}
+
+.admin-table-button {
+    border: 0.1rem solid black;
+    padding-block: 0.5rem;
+    background-color: var(--secondary-accent-color);
+    /* margin: 1rem; */
+    /* box-shadow: inset 0 0 0 1rem black; */
 }
 
 @media (min-width: 1080px) {

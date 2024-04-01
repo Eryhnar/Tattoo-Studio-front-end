@@ -17,18 +17,19 @@ export const CTable = ({ className, data, editFunction, deleteFunction }) => {
                 };
 
                 const handleChange = (e, key) => {
+                    console.log("e", e, "key", key);
                     setEditedItem((prevState) => ({
                         ...prevState,
                         [key]: e.target.value,
                     }));
                 }
 
-                useEffect(() => {
-                    if (isEditable) {
-                        console.log("editedItem", editedItem);
-                        console.log(e);
-                    }
-                }, [editedItem]);
+                // useEffect(() => {
+                //     if (isEditable) {
+                //         console.log("editedItem", editedItem);
+                //         console.log(e);
+                //     }
+                // }, [editedItem]);
 
                 return (
                     <div key={index}>
@@ -37,7 +38,7 @@ export const CTable = ({ className, data, editFunction, deleteFunction }) => {
                                 <CInput 
                                     className={"table-input"}
                                     type={"text"}
-                                    name={item[key]}
+                                    name={key}
                                     disabled={!isEditable}
                                     value={editedItem[key] || ""}
                                     onChange={(e) => handleChange(e, key)}
