@@ -1,6 +1,6 @@
 import React from "react";
 import { useEffect, useState } from "react";
-import { GetProfileService, UpdateProfileService } from "../../services/apiCalls";
+import { GetProfileService, UpdateProfileService, UpdateProfilePasswordService } from "../../services/apiCalls";
 import "./Profile.css";
 import { TokenContext } from "../../App";
 import { CCard } from "../../common/CCard/CCard";
@@ -26,6 +26,13 @@ export const Profile = () => {
         email: "",
     });
     const [msgError, setMsgError] = useState("");
+
+    const [isOpenPassEdit, setIsOpenPassEdit] = useState(false);
+    const [password, setPassword] = useState({
+        oldPassword: "",
+        newPassword: "",
+        confirmPassword: "",
+    });
 
     // const fetchProfile = async () => {
     //     try {
@@ -74,16 +81,82 @@ export const Profile = () => {
     const updateProfile = async (field) => {
         try {
             const response = await UpdateProfileService(field, JSON.parse(localStorage.getItem("token")));
-            console.log(response);
             return response.data;
         } catch (error) {
             console.log(error);
         }
     }
 
+    const changePassword = async () => {
+        console.log(password);
+        try {
+            const response = await UpdateProfilePasswordService(password, JSON.parse(localStorage.getItem("token")));
+            setIsOpenPassEdit(false);
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+    const passInputHandler = (e) => {
+        setPassword((prevState) => ({
+          ...prevState,
+          [e.target.name]: e.target.value,
+        }));
+    }
+
 
     return (
         <div className="profile-design">
+            {isOpenPassEdit && 
+                <CCard 
+                    className={"password-card"}
+                    title={"Change Password"}
+                    content={
+                        <div className="password-inputs">
+                            <div className="old-password-field">
+                                <p>Old Password</p>
+                                <CInput 
+                                    className={"password-input"}
+                                    type="password"
+                                    name="oldPassword"
+                                    value={password.oldPassword || ""}
+                                    onChangeFunction={(e) => { passInputHandler(e) }}
+                                />
+                            </div>
+                            <div className="new-password-field">
+                                <p>New Password</p>
+                                <CInput 
+                                    className={"password-input"}
+                                    type="password"
+                                    name="newPassword"
+                                    value={password.newPassword || ""}
+                                    onChangeFunction={(e) => { passInputHandler(e) }}
+                                />
+                            </div>
+                            <div className="confirm-password-field">
+                                <p>Confirm Password</p>
+                                <CInput 
+                                    className={"password-input"}
+                                    type="password"
+                                    name="confirmPassword"
+                                    value={password.confirmPassword || ""}
+                                    onChangeFunction={(e) => { passInputHandler(e) }}
+                                />
+                            </div>
+                            <CButton
+                                className={"change-password-button"}
+                                title={"change password"}
+                                onClickFunction={() => {changePassword()}}
+                            />
+                            <CButton
+                                className={"change-password-button"}
+                                title={"cancel"}
+                                onClickFunction={() => setIsOpenPassEdit(false)}
+                            />
+                        </div>
+                    }
+                />
+            } 
             <CCard 
                 className={"profile-card"}
                 title={token.name} 
@@ -200,7 +273,7 @@ export const Profile = () => {
                         <CButton
                             className={"change-password-button"}
                             title={"change password"}
-                            onClickFunction={() => {}}
+                            onClickFunction={() => setIsOpenPassEdit(true)}
                         />
                         {/* <CButton
                             className={"edit-profile-button"}
