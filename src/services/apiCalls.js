@@ -187,3 +187,20 @@ export const GetCatalogueService = async () => {
         throw error;
     }
 }
+
+export const UpdateUserByIdService = async (user, token) => {
+    try {
+        const response = await fetch(root + `users/${user.id}`, {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${token}`,
+            },
+            body: JSON.stringify(user),
+        });
+
+        return response.json();
+    } catch (error) {
+        throw error;
+    }
+}
