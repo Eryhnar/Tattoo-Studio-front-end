@@ -40,7 +40,7 @@ The project required us to make a front-end application in reactjs. It also requ
 
 ## Deployment 🚀
 <div align="center">
-    coming soon
+    https://dev.d32jea269yhiho.amplifyapp.com/
 </div>
 
 ## Stack
