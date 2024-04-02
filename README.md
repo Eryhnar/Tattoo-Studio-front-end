@@ -85,8 +85,7 @@ comming soon
 ## Credentials
     These are some of the credentials provided in the seeder.
     - user@user.com password: Aa123456 (user)
-    - admin@admin.com password: Aa123456 (admin)
-    - super_admin@super_admin.com password: Aa123456 (super_admin)
+    - superadmin@superadmin.com password: Aa123456 (super_admin)
 
 ## Decisions
 

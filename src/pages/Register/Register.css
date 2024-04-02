@@ -111,6 +111,15 @@
     user-select: none;
 }
 
+.login-redirect {
+    background-color: transparent;
+    text-decoration: underline;
+}
+
+.login-redirect:hover {
+    cursor: pointer;
+}
+
 @media (min-width: 1080px) {
     .register-card {
         max-width: 80vw;
