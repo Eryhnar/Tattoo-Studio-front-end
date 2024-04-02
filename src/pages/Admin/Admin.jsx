@@ -77,7 +77,6 @@ export const Admin = () => {
         }
     }
 
-console.log("users", users, "services" ,services, "catalogue", catalogue, "appointments", appointments);
     return (
         <div className="admin-design">
             <div className="admin-body">
