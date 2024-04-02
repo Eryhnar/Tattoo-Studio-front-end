@@ -3,6 +3,7 @@ import "./Admin.css";
 import { useState } from "react";
 import { GetUsersService, GetServicesService, GetCatalogueService, GetAllAppointmentsService, UpdateUserByIdService, DeleteUserByIdService } from "../../services/apiCalls";
 import { CTable } from "../../common/CTable/CTable";
+import { LoadingScreen } from "../../common/LoadingScreen/LoadingScreen";
 
 export const Admin = () => {
     const [users, setUsers] = useState([]);
@@ -62,7 +63,7 @@ export const Admin = () => {
     }
 
     const getData = () => {
-        switch(filter) {
+        switch (filter) {
             case "users":
                 return users;
             case "services":
@@ -88,17 +89,17 @@ export const Admin = () => {
                     <CButton
                         className={"admin-header-button"}
                         title={"Services"}
-                        onClickFunction={fetchServices}
+                        // onClickFunction={fetchServices}
                     />
                     <CButton
                         className={"admin-header-button"}
                         title={"Catalogue"}
-                        onClickFunction={() => {}}
+                        // onClickFunction={() => { }}
                     />
                     <CButton
                         className={"admin-header-button"}
                         title={"Appointments"}
-                        onClickFunction={() => fetchAppointments(JSON.parse(localStorage.getItem("token")))}
+                        // onClickFunction={() => fetchAppointments(JSON.parse(localStorage.getItem("token")))}
                     />
                 </div>
                 {/* <AdminUsers
@@ -112,48 +113,56 @@ export const Admin = () => {
                     editFunction={editFunction}
                     deleteFunction={() => deleteFunction()}
                 /> */}
-                
-                {(getData().length !== 0) && 
+
+                {(getData().length !== 0) //TODO check for isLoading instead
+                    ?
                     <>
                         {/* <div className={`admin-table-${filter}`}> */}
                         <div className="admin-table">
-                        <div className="admin-table-users">
-    {Object.keys(getData()[0]).map((key) => (
-        <div key={key} className="admin-table-header-title">
-            {key}
-        </div>
-    ))}
-    <div className="admin-table-header-title">Edit</div>
-    <div className="admin-table-header-title">Delete</div>
-    {getData().map((item, index) => (
-        <>
-            {Object.keys(item).map((key) => (
-                <div key={key} className="admin-table-row-item">
-                    {item[key]}
-                </div>
-            ))}
-            {/* <div className="admin-table-button-container"> */}
-                <CButton
-                    className={"admin-table-button"}
-                    title={"Edit"}
-                    onClickFunction={() => editFunction(item)}
-                />
-                <CButton
-                    className={"admin-table-button"}
-                    title={"Delete"}
-                    onClickFunction={() => deleteFunction(item)}
-                />
-            {/* </div> */}
-        </>
-    ))}
-</div>
+                            <div className="admin-table-users">
+                                {Object.keys(getData()[0]).map((key) => (
+                                    <div key={key} className="admin-table-header-title">
+                                        {key}
+                                    </div>
+                                ))}
+                                <div className="admin-table-header-title">Edit</div>
+                                <div className="admin-table-header-title">Delete</div>
+                                {getData().map((item, index) => (
+                                    <>
+                                        {Object.keys(item).map((key) => (
+                                            <div key={key} className="admin-table-row-item">
+                                                {item[key]}
+                                            </div>
+                                        ))}
+                                        {/* <div className="admin-table-button-container"> */}
+                                        <CButton
+                                            className={"admin-table-button"}
+                                            title={"Edit"}
+                                            onClickFunction={() => editFunction(item)}
+                                        />
+                                        <CButton
+                                            className={"admin-table-button"}
+                                            title={"Delete"}
+                                            onClickFunction={() => deleteFunction(item)}
+                                        />
+                                        {/* </div> */}
+                                    </>
+                                ))}
+                            </div>
                         </div>
                     </>
+                    : filter === "" 
+                    ?
+                    <div className="admin-welcome">
+                        <h1>Welcome to the Admin Page!</h1>
+                        <p>Select the data to see.</p>
+                    </div> 
+                    :
+                    <LoadingScreen />
+                    
+                    
                 }
-            
-
-            {/* Admin */}
+            </div>
         </div>
-    </div>
     )
 }
