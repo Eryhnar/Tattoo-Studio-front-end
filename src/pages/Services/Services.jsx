@@ -6,6 +6,7 @@ import { LoadingScreen } from "../../common/LoadingScreen/LoadingScreen";
 
 export const Services = () => {
     const [services, setServices] = useState([]);
+    const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
         const fetchServices = async () => {
@@ -14,17 +15,16 @@ export const Services = () => {
                 setServices(response.data);
             } catch (error) {
                 console.log(error);
+            } finally {
+                setIsLoading(false);
             }
-
         }
-        if (services.length === 0) {
-            fetchServices();
-        }
-    }, [services]);
+        fetchServices();
+    }, []);
 
     return (
         <>
-            {services.length === 0 
+            {isLoading 
                 ? 
                     <LoadingScreen />
                 : 
