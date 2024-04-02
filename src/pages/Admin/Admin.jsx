@@ -17,8 +17,6 @@ export const Admin = () => {
             const response = await GetUsersService(token);
             setUsers(response.data);
             setFilter("users")
-            console.log(users);
-            console.log(response.data);
         } catch (error) {
             console.log(error);
         }

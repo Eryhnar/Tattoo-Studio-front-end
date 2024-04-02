@@ -81,14 +81,15 @@ export const Profile = () => {
     const updateProfile = async (field) => {
         try {
             const response = await UpdateProfileService(field, JSON.parse(localStorage.getItem("token")));
-            return response.data;
+            writeField("name");
+            setOriginalProfile(profile);
+            setToken(prevToken => ({...prevToken, name: profile.name}));
         } catch (error) {
             console.log(error);
         }
     }
 
     const changePassword = async () => {
-        console.log(password);
         try {
             const response = await UpdateProfilePasswordService(password, JSON.parse(localStorage.getItem("token")));
             setIsOpenPassEdit(false);
@@ -187,12 +188,6 @@ export const Profile = () => {
                                         title={<span className="material-symbols-outlined">done</span>}
                                         onClickFunction={async () => {
                                             const newProfile = await updateProfile(profile);
-                                            if (newProfile) {
-                                                writeField("name");
-                                                setProfile(newProfile);
-                                                setOriginalProfile(profile);
-                                                setToken(newProfile);
-                                            }
                                         }}
                                     />
                                     <CButton
