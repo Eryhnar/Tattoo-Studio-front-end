@@ -30,7 +30,7 @@ export const Body = () => {
             <Route path="/admin" element={<SecureRoute protMode="allow-logged-in-admin" />}>
                 <Route index element={<Admin />} />
             </Route>
-            <Route path="/catalogue" element={<Catalogue />} />
+            {/* <Route path="/catalogue" element={<Catalogue />} /> */}
             <Route path="*" element={<Navigate to={"/"} replace/>} />
         </Routes>
         
