@@ -90,7 +90,6 @@ export const Profile = () => {
     }
 
     const changePassword = async () => {
-        console.log(password);
         try {
             const response = await UpdateProfilePasswordService(password, JSON.parse(localStorage.getItem("token")));
             setIsOpenPassEdit(false);
