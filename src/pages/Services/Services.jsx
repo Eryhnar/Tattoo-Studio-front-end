@@ -34,7 +34,7 @@ export const Services = () => {
                             className= {"service"}
                             title= {service.name}
                             content= {service.description}
-                            image= {service.image}
+                            image= {service.photo}
                         />
                     ))}
                 </div>
