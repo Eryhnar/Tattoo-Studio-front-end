@@ -13,6 +13,7 @@
     <li><a href="#features">Features</a></li>
     <li><a href="#decisions">Decisions</a></li>
     <li><a href="#roadmap">Roadmap</a></li>
+    <li><a href="#known-issues">Known Issues</a></li>
     <li><a href="#author">Authort</a></li>
   </ol>
 </details>
@@ -101,6 +102,9 @@ comming soon
 - Clean up code.
 - Implement the edit functionality for users in the admin view
 - Add surname field to user in admin view
+
+## Known issues
+- In mobile, a bar appears above the header in some views. This does not happen on desktop or development responsive mode. (Being investigated)
 
 ## Author 
 
