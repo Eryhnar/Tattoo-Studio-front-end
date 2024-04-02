@@ -1,5 +1,5 @@
-// const root = "https://tattoo-studio-dev-sgnn.3.us-1.fl0.io/api/";
-const root = "http://localhost:4000/api/";
+const root = "https://tattoo-studio-dev-sgnn.3.us-1.fl0.io/api/";
+// const root = "http://localhost:4000/api/";
 
 export const RegisterService = async (user) => {
     try {
