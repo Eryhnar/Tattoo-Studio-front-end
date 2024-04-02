@@ -1,0 +1,8 @@
+.loading-screen {
+    --accent-color: rgb(113, 113, 113);
+    --secondary-accent-color: #ebc95b;
+
+    background-color: var(--accent-color);
+
+    min-height: 90vh;
+}
