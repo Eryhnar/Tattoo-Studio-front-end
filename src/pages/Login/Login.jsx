@@ -49,6 +49,8 @@ export const Login = () => {
             localStorage.setItem("token", JSON.stringify(response.token));
             setToken(decoded);
 
+            navigate("/");
+
             // setTimeout(() => {
             //     navigate("/");
             // }, 1200);

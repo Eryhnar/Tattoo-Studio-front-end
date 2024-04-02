@@ -56,6 +56,8 @@ export const Register = () => {
             //     navigate("/");
             // }, 1200);
 
+            navigate("/login");
+
         } catch (error) {
             setMsgError(error.message);
         }
