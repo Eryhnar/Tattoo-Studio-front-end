@@ -4,31 +4,14 @@ export const Home = () => {
     return (
         // <div className="viewDesign">
         <div className="homeDesign">
-            {/* <div className="homeDesign">
-                <CDropdown 
-                    buttonClass="dropdown"
-                    dropdownClass="dropdown-content"
-                    title="Dropdown" 
-                    items={["patata", "cebolla", "tomate", "lechuga", "zanahoria"]}
-                />
-                This is Home
-                <CDropdown
-                    buttonClass="dropdown"
-                    dropdownClass="dropdown-content"
-                    title="Services"
-                    items={services}
-                    onChangeFunction={()=>{}}
-                />
-            </div> */}
+            
             <div className="home-main-banner">
                 <div className="home-main-banner-text">
                     <h1>Inkdin</h1>
                     <h3> Tattoos & piercings in San Francisco</h3>
                 </div>
             </div>
-            {/* <div className="banner-picture">
-                <img src="https://i.imgur.com/e7jcieX.jpeg" alt="tattoo" />
-            </div> */}
+            
             <section>
                 {/* <div>
                     <h2>Show your personality</h2>
