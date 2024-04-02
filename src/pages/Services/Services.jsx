@@ -11,7 +11,6 @@ export const Services = () => {
             try {
                 const response = await GetServicesService();
                 setServices(response.data);
-                console.log(response.data);
             } catch (error) {
                 console.log(error);
             }
