@@ -50,22 +50,19 @@ export const Header = () => {
                 >
                     Home
                 </NavLink>
-                {/* <NavButton title="Home" path="/" /> */}
-                <div className="hidden-nav">
-                    <NavLink
-                        to="/services"
-                        className={"nav-button-design"}
-                    >
-                        Services
-                    </NavLink>
-                    <NavLink
-                        to="/catalogue"
-                        className={"nav-button-design"}
-                    >
-                        Catalogue
-                    </NavLink>
-                </div>
-                {/* <NavButton title="Services" path="/services" /> */}
+                <NavLink
+                    to="/services"
+                    className={"nav-button-design hidden-nav"}
+                >
+                    Services
+                </NavLink>
+                {/* <NavLink
+                    to="/catalogue"
+                    className={"nav-button-design hidden-nav"}
+                >
+                    Catalogue
+                </NavLink> */}
+                
             </div>
             <div className="burger-button" onClick={toggleMenu}>{menuOpen 
                 ? <span className="material-symbols-outlined">menu_open</span> 
@@ -82,14 +79,14 @@ export const Header = () => {
                             Services
                         </NavLink>
                     </li>
-                    <li>
+                    {/* <li>
                         <NavLink
                             to="/catalogue"
                             className={"nav-button-design"}
                         >
                             Catalogue
                         </NavLink>
-                    </li>
+                    </li> */}
                     {token ? (
                         <>
                             {token.roleName.includes("admin") ? (

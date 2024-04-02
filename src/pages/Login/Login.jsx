@@ -8,6 +8,7 @@ import { useState } from "react";
 import { LoginService } from "../../services/apiCalls";
 import { TokenContext } from "../../App";
 import { decodeToken } from "react-jwt"
+import { NavButton } from "../../common/NavButton/NavButton";
 
 export const Login = () => {
     const navigate = useNavigate();
@@ -47,6 +48,8 @@ export const Login = () => {
             const decoded = decodeToken(response.token);
             localStorage.setItem("token", JSON.stringify(response.token));
             setToken(decoded);
+
+            navigate("/");
 
             // setTimeout(() => {
             //     navigate("/");
@@ -94,6 +97,11 @@ export const Login = () => {
                                 onClickFunction={loginUser}
                             />
                             <div className="error">{msgError}</div>
+                            <NavButton 
+                                className="register-redirect"
+                                title="Not registered yet? Register here!"
+                                path="/register"
+                            />
                         </div>
                     }
                 />

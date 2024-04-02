@@ -30,15 +30,28 @@
     margin-bottom: 3rem;
 
     color: var(--title-color);
-    font-size: 3rem;
+    font-size: 4rem;
+    font-family: "Dancing Script", cursive;
+    font-weight: 800;
 }
-
+.old-password-field,
+.new-password-field,
+.confirm-password-field {
+    padding-block: 0.5rem;
+}  
 .name-field {
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
     position: relative;
+}
+.old-password-field p,
+.new-password-field p,
+.confirm-password-field p {
+    position: absolute;
+    right: calc(50% + 6em); 
+    text-align: center;
 }
 
 .name-field p {

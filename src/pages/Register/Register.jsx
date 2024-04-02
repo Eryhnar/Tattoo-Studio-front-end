@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { RegisterService } from "../../services/apiCalls";
 import { useState } from "react";
 import "./Register.css";
+import { NavButton } from "../../common/NavButton/NavButton";
 
 export const Register = () => {
     const navigate = useNavigate();
@@ -54,6 +55,8 @@ export const Register = () => {
             // setTimeout(() => {
             //     navigate("/");
             // }, 1200);
+
+            navigate("/login");
 
         } catch (error) {
             setMsgError(error.message);
@@ -149,6 +152,11 @@ export const Register = () => {
                                 onClickFunction={registerUser}
                             />
                             <div className="error">{msgError}</div>
+                            <NavButton
+                                className="login-redirect"
+                                title="Already registered? Click here to log in!"
+                                path="/login"
+                            />
                         </div>
                     }
                 />

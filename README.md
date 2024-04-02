@@ -40,7 +40,7 @@ The project required us to make a front-end application in reactjs. It also requ
 
 ## Deployment 🚀
 <div align="center">
-    coming soon
+    https://dev.d32jea269yhiho.amplifyapp.com/
 </div>
 
 ## Stack
@@ -85,12 +85,12 @@ comming soon
 ## Credentials
     These are some of the credentials provided in the seeder.
     - user@user.com password: Aa123456 (user)
-    - admin@admin.com password: Aa123456 (admin)
-    - super_admin@super_admin.com password: Aa123456 (super_admin)
+    - superadmin@superadmin.com password: Aa123456 (super_admin)
 
 ## Decisions
 
 - I decided to simplify the design and features vs the capabilities of the back-end given that the extra features would have taken time that right now is better spent researching for other project like the final project.
+- I also decided not to use libraries. All elements and date formatting were done manually to reduce both dependencies and weight, and to get some practice with custom elements.
 
 ## Roadmap
 - Add Input validations

@@ -17,7 +17,6 @@ export const CTable = ({ className, data, editFunction, deleteFunction }) => {
                 };
 
                 const handleChange = (e, key) => {
-                    console.log("e", e, "key", key);
                     setEditedItem((prevState) => ({
                         ...prevState,
                         [key]: e.target.value,

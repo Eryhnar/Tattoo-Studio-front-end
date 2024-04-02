@@ -17,11 +17,12 @@ export const Admin = () => {
             const response = await GetUsersService(token);
             setUsers(response.data);
             setFilter("users")
+            console.log(users);
+            console.log(response.data);
         } catch (error) {
             console.log(error);
         }
     }
-
     const fetchServices = async () => {
         try {
             const response = await GetServicesService();
@@ -77,7 +78,6 @@ export const Admin = () => {
         }
     }
 
-console.log("users", users, "services" ,services, "catalogue", catalogue, "appointments", appointments);
     return (
         <div className="admin-design">
             <div className="admin-body">

@@ -38,11 +38,9 @@ export const Appointments = () => {
 
     useEffect(() => {
         const getAppointments = async () => {
-            console.log("status", status)
             const token = localStorage.getItem("token");
             const response = await GetAppointmentsService(status, JSON.parse(localStorage.getItem("token")));
             setAppointments(response.data);
-            console.log("response data", response.data);
         };
         getAppointments();
         if (token.roleName === "customer") {
@@ -78,7 +76,6 @@ export const Appointments = () => {
         if (e.target.name === "date") {
             setDate(value);
             value += ":00.000Z";
-            console.log("value", value);
         }
         setNewAppointment((prevState) => ({
             ...prevState,
@@ -87,14 +84,10 @@ export const Appointments = () => {
     };
 
     const editInputHandler = (e) => {
-        console.log("e.target.value", e.target.value);
         setEditAppointment((prevState) => ({
             ...prevState,
             [e.target.name]: e.target.value,
         }));
-        // setTimeout(() => {
-        //     console.log("editAppointment", editAppointment);
-        // }, 1000);
     };
 
     const toggleCardVisibility = (e) => {
@@ -107,20 +100,17 @@ export const Appointments = () => {
     const createAppointment = async () => {
         try {
             const response = await CreateAppointmentService(newAppointment, JSON.parse(localStorage.getItem("token")));
-            console.log(response.data);
             if (response.success === false) {
                 throw new Error(response.message);
             }
+            setAppointments(prevAppointments => [response.data, ...prevAppointments]);
             setOpenNew(false);
-            return response.data;
         } catch (error) {
             setMsgError(error.message);
         }
     }
 
     const startEditingAppointment = (appointment) => {
-        console.log("appointment", appointment);
-        console.log("appointment.service.id", appointment.service.id);
         setEditAppointment({
             id: appointment.id,
             artistId: appointment.artist.id,
@@ -128,21 +118,11 @@ export const Appointments = () => {
             date: appointment.date,
         })
         setIsOpenEdit(true);
-
-        // setTimeout(() => {
-        //     console.log("editAppointment", editAppointment);
-        // }, 5000);
     }
-    // console.log("editAppointment", editAppointment);
 
     const updateAppointment = async (updatedAppointment) => { //TODO change with hook
         try {
             const response = await UpdateAppointmentService(updatedAppointment, JSON.parse(localStorage.getItem("token")));
-            // setAppointments(appointments => {
-            //     return appointments.map(appointment => 
-            //         appointment.id === updatedAppointment.id ? updatedAppointment : appointment
-            //     );
-            // });
             setIsOpenEdit(false);
         } catch (error) {
             console.log(error);
@@ -154,7 +134,6 @@ export const Appointments = () => {
         try {
             const response = await DeleteAppointmentService(id, JSON.parse(localStorage.getItem("token")));
             setAppointments(appointments.filter(appointment => appointment.id !== id));
-            appointments.filter(appointment => appointment.id !== id);
         } catch (error) {
             console.log(error);
             //set error
