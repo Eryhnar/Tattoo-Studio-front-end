@@ -6,25 +6,29 @@ import { LoadingScreen } from "../../common/LoadingScreen/LoadingScreen";
 
 export const Services = () => {
     const [services, setServices] = useState([]);
+    const [isLoading, setIsLoading] = useState(true);
+    // const [firstCall, setFirstCall] = useState(true);
+    const [retries, setRetries] = useState(3);
 
     useEffect(() => {
         const fetchServices = async () => {
             try {
                 const response = await GetServicesService();
-                setServices(response.data);
+                if (response.success) {
+                    setServices(response.data);
+                    setIsLoading(false);
+                }
             } catch (error) {
                 console.log(error);
+                setRetries(prevRetries => prevRetries - 1);
             }
-
         }
-        if (services.length === 0) {
-            fetchServices();
-        }
-    }, [services]);
+        retries > 0 && fetchServices();
+    }, [retries]);
 
     return (
         <>
-            {services.length === 0 
+            {isLoading 
                 ? 
                     <LoadingScreen />
                 : 
@@ -36,6 +40,7 @@ export const Services = () => {
                             <div className="services">
                                 {services.map((service, index) => (
                                     <CCard
+                                        key= {index}
                                         className= {"service"}
                                         title= {service.name}
                                         content= {service.description}
