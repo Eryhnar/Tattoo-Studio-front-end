@@ -261,8 +261,16 @@ export const UpdateProfilePasswordService = async (passwords, token) => {
             },
             body: JSON.stringify(passwords),
         });
+        if (response.status === 404) {
+            throw new Error("Service not available at the moment retry later");
+        }
+        const parsedResponse = await response.json();
+        if (response.status !== 200) {
+            console.log(parsedResponse);
+            throw new Error(parsedResponse.message);
+        }
 
-        return response.json();
+        return parsedResponse;
     } catch (error) {
         throw error;
     }

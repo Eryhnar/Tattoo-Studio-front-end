@@ -1,9 +1,10 @@
 import { CButton } from "../../common/CButton/CButton";
 import "./Admin.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { GetUsersService, GetServicesService, GetCatalogueService, GetAllAppointmentsService, UpdateUserByIdService, DeleteUserByIdService } from "../../services/apiCalls";
 import { CTable } from "../../common/CTable/CTable";
 import { LoadingScreen } from "../../common/LoadingScreen/LoadingScreen";
+import React from "react"; //TODO remove after implementing dynamic table
 
 export const Admin = () => {
     const [users, setUsers] = useState([]);
@@ -12,44 +13,53 @@ export const Admin = () => {
     const [appointments, setAppointments] = useState([]);
     const [data, setData] = useState([]);
     const [filter, setFilter] = useState("");
+    const [isLoading, setIsLoading] = useState(true);
+    const [retries, setRetries] = useState(3);
 
     const fetchUsers = async (token) => {
-        try {
-            const response = await GetUsersService(token);
-            setUsers(response.data);
-            setFilter("users")
-        } catch (error) {
-            console.log(error);
-        }
+        // if (retries > 0) {
+            try {
+                const response = await GetUsersService(token);
+                setUsers(response.data);
+                setFilter("users")
+                // setRetries(3);
+            } catch (error) {
+                console.log(error);
+                // setRetries(prevRetries => prevRetries - 1);
+            }
+        // }
     }
     const fetchServices = async () => {
-        try {
-            const response = await GetServicesService();
-            setServices(response.data);
-            setFilter("services")
-        } catch (error) {
-            console.log(error);
-        }
+        // try {
+        //     const response = await GetServicesService();
+        //     setServices(response.data);
+        //     setFilter("services")
+        // } catch (error) {
+        //     console.log(error);
+        // }
+        setFilter("services")
     }
 
     const fetchCatalogue = async () => {
-        try {
-            const response = await GetCatalogueService();
-            setCatalogue(response.data);
-            setFilter("catalogue")
-        } catch (error) {
-            console.log(error);
-        }
+        // try {
+        //     const response = await GetCatalogueService();
+        //     setCatalogue(response.data);
+        //     setFilter("catalogue")
+        // } catch (error) {
+        //     console.log(error);
+        // }
+        setFilter("catalogue")
     }
 
     const fetchAppointments = async (token) => {
-        try {
-            const response = await GetAllAppointmentsService(token);
-            setAppointments(response.data);
-            setFilter("appointments")
-        } catch (error) {
-            console.log(error);
-        }
+        // try {
+        //     const response = await GetAllAppointmentsService(token);
+        //     setAppointments(response.data);
+        //     setFilter("appointments")
+        // } catch (error) {
+        //     console.log(error);
+        // }
+        setFilter("appointments")
     }
 
     const editFunction = async (item) => {
@@ -82,24 +92,24 @@ export const Admin = () => {
             <div className="admin-body">
                 <div className="admin-header">
                     <CButton
-                        className={"admin-header-button"}
+                        className={`admin-header-button ${filter === "users" && "admin-header-button-active"}`}
                         title={"Users"}
                         onClickFunction={() => fetchUsers(JSON.parse(localStorage.getItem("token")))}
                     />
                     <CButton
-                        className={"admin-header-button"}
+                        className={`admin-header-button ${filter === "services" && "admin-header-button-active"}`}
                         title={"Services"}
-                        // onClickFunction={fetchServices}
+                        onClickFunction={fetchServices}
                     />
                     <CButton
-                        className={"admin-header-button"}
+                        className={`admin-header-button ${filter === "catalogue" && "admin-header-button-active"}`}
                         title={"Catalogue"}
-                        // onClickFunction={() => { }}
+                        onClickFunction={fetchCatalogue}
                     />
                     <CButton
-                        className={"admin-header-button"}
+                        className={`admin-header-button ${filter === "appointments" && "admin-header-button-active"}`}
                         title={"Appointments"}
-                        // onClickFunction={() => fetchAppointments(JSON.parse(localStorage.getItem("token")))}
+                        onClickFunction={() => fetchAppointments(JSON.parse(localStorage.getItem("token")))}
                     />
                 </div>
                 {/* <AdminUsers
@@ -128,7 +138,7 @@ export const Admin = () => {
                                 <div className="admin-table-header-title">Edit</div>
                                 <div className="admin-table-header-title">Delete</div>
                                 {getData().map((item, index) => (
-                                    <>
+                                    <React.Fragment key={index}> {/*TODO remove after implementing dynamic table*/}
                                         {Object.keys(item).map((key) => (
                                             <div key={key} className="admin-table-row-item">
                                                 {item[key]}
@@ -136,17 +146,19 @@ export const Admin = () => {
                                         ))}
                                         {/* <div className="admin-table-button-container"> */}
                                         <CButton
+                                            key={`edit-${index}`}
                                             className={"admin-table-button"}
                                             title={"Edit"}
                                             onClickFunction={() => editFunction(item)}
                                         />
                                         <CButton
+                                            key={`delete-${index}`}
                                             className={"admin-table-button"}
                                             title={"Delete"}
                                             onClickFunction={() => deleteFunction(item)}
                                         />
                                         {/* </div> */}
-                                    </>
+                                    </React.Fragment>
                                 ))}
                             </div>
                         </div>
@@ -158,7 +170,8 @@ export const Admin = () => {
                         <p>Select the data to see.</p>
                     </div> 
                     :
-                    <LoadingScreen />
+                    // <LoadingScreen />
+                    <div className="WIP">Comming Soon</div>
                     
                     
                 }

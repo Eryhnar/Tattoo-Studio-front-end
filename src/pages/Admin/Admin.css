@@ -43,6 +43,19 @@
     color: var(--secondary-accent-color);
 }
 
+.admin-header-button-active {
+    background-color: var(--dark-color);
+    color: var(--secondary-accent-color);
+}
+
+.admin-welcome h1{
+    color: var(--title-color);
+}
+
+.admin-welcome p {
+    color: var(--secondary-accent-color);
+}
+
 .admin-table {
     display: flex;
     flex-direction: column;
@@ -120,3 +133,8 @@
         background-color: transparent;
     }
 } */
+
+.WIP {
+    color: var(--title-color);
+    font-size: 4rem;
+}
