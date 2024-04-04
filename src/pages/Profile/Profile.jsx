@@ -99,8 +99,9 @@ export const Profile = () => {
     const changePassword = async () => {
         try {
             const response = await UpdateProfilePasswordService(password, JSON.parse(localStorage.getItem("token")));
-            setIsOpenPassEdit(false);
+            // setIsOpenPassEdit(false);
         } catch (error) {
+            setMsgError(error.message);
             console.log(error);
         }
     }
@@ -155,6 +156,7 @@ export const Profile = () => {
                                         onChangeFunction={(e) => { passInputHandler(e) }}
                                     />
                                 </div>
+                                <div className="password-update-error">{msgError}</div>
                                 <CButton
                                     className={"change-password-button"}
                                     title={"change password"}
@@ -193,7 +195,8 @@ export const Profile = () => {
                                         onClickFunction={() => writeField("name")}
                                         /> 
                                     </div>
-                                    : <div className="edit-fields">
+                                    : 
+                                    <div className="edit-fields">
                                         <CButton
                                             className={"save-icon"}
                                             title={<span className="material-symbols-outlined">done</span>}

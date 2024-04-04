@@ -1,9 +1,10 @@
 import { CButton } from "../../common/CButton/CButton";
 import "./Admin.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { GetUsersService, GetServicesService, GetCatalogueService, GetAllAppointmentsService, UpdateUserByIdService, DeleteUserByIdService } from "../../services/apiCalls";
 import { CTable } from "../../common/CTable/CTable";
 import { LoadingScreen } from "../../common/LoadingScreen/LoadingScreen";
+import React from "react"; //TODO remove after implementing dynamic table
 
 export const Admin = () => {
     const [users, setUsers] = useState([]);
@@ -12,15 +13,21 @@ export const Admin = () => {
     const [appointments, setAppointments] = useState([]);
     const [data, setData] = useState([]);
     const [filter, setFilter] = useState("");
+    const [isLoading, setIsLoading] = useState(true);
+    const [retries, setRetries] = useState(3);
 
     const fetchUsers = async (token) => {
-        try {
-            const response = await GetUsersService(token);
-            setUsers(response.data);
-            setFilter("users")
-        } catch (error) {
-            console.log(error);
-        }
+        // if (retries > 0) {
+            try {
+                const response = await GetUsersService(token);
+                setUsers(response.data);
+                setFilter("users")
+                // setRetries(3);
+            } catch (error) {
+                console.log(error);
+                // setRetries(prevRetries => prevRetries - 1);
+            }
+        // }
     }
     const fetchServices = async () => {
         // try {
@@ -131,7 +138,7 @@ export const Admin = () => {
                                 <div className="admin-table-header-title">Edit</div>
                                 <div className="admin-table-header-title">Delete</div>
                                 {getData().map((item, index) => (
-                                    <>
+                                    <React.Fragment key={index}> {/*TODO remove after implementing dynamic table*/}
                                         {Object.keys(item).map((key) => (
                                             <div key={key} className="admin-table-row-item">
                                                 {item[key]}
@@ -139,17 +146,19 @@ export const Admin = () => {
                                         ))}
                                         {/* <div className="admin-table-button-container"> */}
                                         <CButton
+                                            key={`edit-${index}`}
                                             className={"admin-table-button"}
                                             title={"Edit"}
                                             onClickFunction={() => editFunction(item)}
                                         />
                                         <CButton
+                                            key={`delete-${index}`}
                                             className={"admin-table-button"}
                                             title={"Delete"}
                                             onClickFunction={() => deleteFunction(item)}
                                         />
                                         {/* </div> */}
-                                    </>
+                                    </React.Fragment>
                                 ))}
                             </div>
                         </div>

@@ -1,3 +1,4 @@
+
 .profile-design {
     --title-color: rgb(207, 139, 13);
     --accent-color: rgb(113, 113, 113);
@@ -52,6 +53,11 @@
     position: absolute;
     right: calc(50% + 6em); 
     text-align: center;
+}
+
+.password-update-error {
+    min-height: 1.5rem;
+    color: red;
 }
 
 .name-field p {
