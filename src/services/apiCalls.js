@@ -41,8 +41,14 @@ export const GetProfileService = async (token) => {
                 Authorization: `Bearer ${token}`,
             },
         });
-        return response.json();
+        const parsedResponse = await response.json();
+        if (!parsedResponse.success) {
+            // console.log(parsedResponse);
+            throw new Error(`Message: ${parsedResponse.message}, Data: ${JSON.stringify(parsedResponse.data)}`);
+        }
+        return parsedResponse;
     } catch (error) {
+        // console.log(error);
         throw error;
     }
 }
@@ -69,8 +75,19 @@ export const GetServicesService = async () => {
         const response = await fetch(root + "services", {
             method: "GET",
         });
-        return response.json();
+
+        if (response.status === 404) {
+            throw new Error("Error fetching services");
+        }
+
+        const parsedResponse = await response.json();
+        if (!parsedResponse.success) {
+            // console.log(parsedResponse);
+            throw new Error(`Message: ${parsedResponse.message}, Data: ${JSON.stringify(parsedResponse.data)}`);
+        }
+        return parsedResponse;
     } catch (error) {
+        // console.log(error);
         throw error;
     }
 }
@@ -83,8 +100,15 @@ export const GetAppointmentsService = async (state, token) => {
                 Authorization: `Bearer ${token}`,
             },
         });
-        return response.json();
+        
+        const parsedResponse = await response.json();
+        if (!parsedResponse.success) {
+            // console.log(parsedResponse);
+            throw new Error(`Message: ${parsedResponse.message}, Data: ${JSON.stringify(parsedResponse.data)}`);
+        }
+        return parsedResponse;
     } catch (error) {
+        // console.log(error);
         throw error;
     }
 }
@@ -158,8 +182,14 @@ export const GetUsersService = async (token) => {
                 Authorization: `Bearer ${token}`,
             },
         });
-        return response.json();
+        const parsedResponse = await response.json();
+        if (!parsedResponse.success) {
+            // console.log(parsedResponse);
+            throw new Error(`Message: ${parsedResponse.message}, Data: ${JSON.stringify(parsedResponse.data)}`);
+        }
+        return parsedResponse;
     } catch (error) {
+        // console.log(error);
         throw error;
     }
 }
