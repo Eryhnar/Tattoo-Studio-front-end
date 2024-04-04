@@ -23,33 +23,36 @@ export const Admin = () => {
         }
     }
     const fetchServices = async () => {
-        try {
-            const response = await GetServicesService();
-            setServices(response.data);
-            setFilter("services")
-        } catch (error) {
-            console.log(error);
-        }
+        // try {
+        //     const response = await GetServicesService();
+        //     setServices(response.data);
+        //     setFilter("services")
+        // } catch (error) {
+        //     console.log(error);
+        // }
+        setFilter("services")
     }
 
     const fetchCatalogue = async () => {
-        try {
-            const response = await GetCatalogueService();
-            setCatalogue(response.data);
-            setFilter("catalogue")
-        } catch (error) {
-            console.log(error);
-        }
+        // try {
+        //     const response = await GetCatalogueService();
+        //     setCatalogue(response.data);
+        //     setFilter("catalogue")
+        // } catch (error) {
+        //     console.log(error);
+        // }
+        setFilter("catalogue")
     }
 
     const fetchAppointments = async (token) => {
-        try {
-            const response = await GetAllAppointmentsService(token);
-            setAppointments(response.data);
-            setFilter("appointments")
-        } catch (error) {
-            console.log(error);
-        }
+        // try {
+        //     const response = await GetAllAppointmentsService(token);
+        //     setAppointments(response.data);
+        //     setFilter("appointments")
+        // } catch (error) {
+        //     console.log(error);
+        // }
+        setFilter("appointments")
     }
 
     const editFunction = async (item) => {
@@ -82,24 +85,24 @@ export const Admin = () => {
             <div className="admin-body">
                 <div className="admin-header">
                     <CButton
-                        className={"admin-header-button"}
+                        className={`admin-header-button ${filter === "users" && "admin-header-button-active"}`}
                         title={"Users"}
                         onClickFunction={() => fetchUsers(JSON.parse(localStorage.getItem("token")))}
                     />
                     <CButton
-                        className={"admin-header-button"}
+                        className={`admin-header-button ${filter === "services" && "admin-header-button-active"}`}
                         title={"Services"}
-                        // onClickFunction={fetchServices}
+                        onClickFunction={fetchServices}
                     />
                     <CButton
-                        className={"admin-header-button"}
+                        className={`admin-header-button ${filter === "catalogue" && "admin-header-button-active"}`}
                         title={"Catalogue"}
-                        // onClickFunction={() => { }}
+                        onClickFunction={fetchCatalogue}
                     />
                     <CButton
-                        className={"admin-header-button"}
+                        className={`admin-header-button ${filter === "appointments" && "admin-header-button-active"}`}
                         title={"Appointments"}
-                        // onClickFunction={() => fetchAppointments(JSON.parse(localStorage.getItem("token")))}
+                        onClickFunction={() => fetchAppointments(JSON.parse(localStorage.getItem("token")))}
                     />
                 </div>
                 {/* <AdminUsers
@@ -158,7 +161,8 @@ export const Admin = () => {
                         <p>Select the data to see.</p>
                     </div> 
                     :
-                    <LoadingScreen />
+                    // <LoadingScreen />
+                    <div className="WIP">Comming Soon</div>
                     
                     
                 }
