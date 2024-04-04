@@ -52,19 +52,18 @@ export const Profile = () => {
                 const response = await GetProfileService(JSON.parse(localStorage.getItem("token")));
                 setProfile(response.data);
                 setOriginalProfile(response.data);
+                setIsLoading(false);
             } catch (error) {
                 console.log(error);
                 setRetries(prevRetries => prevRetries - 1);
             }
         }
-        if (!hasUser) {
-            if (retries > 0) {
-                fetchProfile();
-                setHasUser(true);
-                setIsLoading(false);
-            }
+        if (!hasUser && retries > 0) {
+            fetchProfile();
+            setHasUser(true);
+            setIsLoading(true);
         }
-    }, []);
+    }, [retries]);
     // console.log(profile);
 
     const inputHandler = (e) => {

@@ -38,7 +38,6 @@ export const Appointments = () => {
 
     useEffect(() => {
         const getAppointments = async () => {
-            const token = localStorage.getItem("token");
             const response = await GetAppointmentsService(status, JSON.parse(localStorage.getItem("token")));
             setAppointments(response.data);
         };

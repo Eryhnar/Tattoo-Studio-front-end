@@ -41,7 +41,11 @@ export const GetProfileService = async (token) => {
                 Authorization: `Bearer ${token}`,
             },
         });
+        if (response.status === 404) {
+            throw new Error("Error fetching profile");
+        }
         const parsedResponse = await response.json();
+
         if (!parsedResponse.success) {
             // console.log(parsedResponse);
             throw new Error(`Message: ${parsedResponse.message}, Data: ${JSON.stringify(parsedResponse.data)}`);
