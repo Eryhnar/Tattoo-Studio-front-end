@@ -12,33 +12,30 @@ export const Header = () => {
 
     const [menuOpen, setMenuOpen] = useState(false);
 
+    useEffect(() => { //there probably is a better way to do this
+        const closeMenu = () => {
+            setMenuOpen(false);
+        };
+    
+        if (menuOpen) {
+            document.addEventListener('mousedown', closeMenu);
+        } else {
+            document.removeEventListener('mousedown', closeMenu);
+        }
+    
+        return () => {
+            document.removeEventListener('mousedown', closeMenu);
+        };
+    }, [menuOpen]);
+
     const logOut = () => {
         setToken(null);
         localStorage.removeItem("token");
         navigate("/");
     };
 
-    // useEffect(() => {
-    //     if (!menuOpen) {
-    //         setTimeout(() => {
-    //             document.querySelector(".burger-menu").style.display = "none";
-    //         }, 500);
-    //     } else {
-    //         document.querySelector(".burger-menu").style.display = "block";
-    //     }
-    // }, [menuOpen]);
-
     const toggleMenu = () => {
         setMenuOpen(!menuOpen);
-        // if (menuOpen) {
-        //     document.querySelector(".burger-menu").style.display = "block";
-        // }
-
-        // if (!menuOpen) {
-        //     setTimeout(() => {
-        //         document.querySelector(".burger-menu").style.display = "none";
-        //     }, 500);
-        // }
     }
 
     return (
