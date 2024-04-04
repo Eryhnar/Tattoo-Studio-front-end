@@ -105,6 +105,8 @@ comming soon
 
 ## Known issues
 - In mobile, a bar appears above the header in some views. This does not happen on desktop or development responsive mode. (Being investigated)
+- Due to hosting hibernation fetches might fail due to unavailability. Currently implementing retries on fetches to prevent this.
+- Some actions like register and login will currently navigate the user out of the view even if the request failed. Soon to be patched.
 
 ## Author 
 
